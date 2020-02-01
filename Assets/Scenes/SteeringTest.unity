@@ -480,7 +480,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.0001
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5367,11 +5367,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76944ca1dd72a58468f2755417d150a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllingRigidbody: {fileID: 757948805}
   maxVelocity: 10
   forwardForce: 0.2
   sideForce: 2
-  controllingRigidbody: {fileID: 757948805}
-  directionAnchor: {fileID: 1855456999}
+  forceSourceAnchor: {fileID: 0}
+  invertForward: 0
   maxMotorAngle: 45
   motorRotateSpeed: 60
   motorParticleSystem: {fileID: 928385263}

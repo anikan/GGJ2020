@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     public bool isGrabbable;
-    public abstract void OnUse();
+    public abstract void OnUse(Player player);
 }

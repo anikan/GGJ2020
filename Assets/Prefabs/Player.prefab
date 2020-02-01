@@ -190,8 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 10
   accelerationSpeed: 5
-  interactZone: {fileID: 0}
-  interactZoneOffset: 0
+  interactZone: {fileID: 1573681350797804616}
+  interactZoneOffset: 1
   boat: {fileID: 0}
 --- !u!50 &1573681351524975802
 Rigidbody2D:

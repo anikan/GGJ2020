@@ -20,9 +20,18 @@ public class InteractZone : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name);
         if (other.gameObject.GetComponent<Interactable>())
         {
             activeInteractableObject = other.gameObject.GetComponent<Interactable>();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<Interactable>() && activeInteractableObject == other.gameObject.GetComponent<Interactable>())
+        {
+            activeInteractableObject = null;
         }
     }
 }

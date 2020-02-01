@@ -68,25 +68,30 @@ public class Player : MonoBehaviour
             rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //If not holding anything and there's an interactable object in front, use it.
             if (!grabbedObject && interactZone.GetComponent<InteractZone>().activeInteractableObject)
             {
+                
                 Interactable interactableObject = interactZone.GetComponent<InteractZone>().activeInteractableObject;
+
+                //If the object is grabbable, set it's parent to the interact zone and reset its position.
                 if (interactableObject.isGrabbable)
                 {
                     grabbedObject = interactableObject.gameObject;
-                    grabbedObject.transform.parent = this.transform;
+                    grabbedObject.transform.parent = interactZone.transform;
+                    grabbedObject.transform.localPosition = new Vector3(0, 0, 0);
                 }
 
-                interactZone.GetComponent<InteractZone>().activeInteractableObject.OnUse();
+                interactZone.GetComponent<InteractZone>().activeInteractableObject.OnUse(this);
             }
 
-            //If holding something.
+            //If holding something, let go.
             else if (grabbedObject)
             {
                 grabbedObject.transform.parent = boat.transform;
+                grabbedObject = null;
             }
         }
     }

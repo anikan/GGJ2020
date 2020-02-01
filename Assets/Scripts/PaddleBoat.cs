@@ -17,24 +17,31 @@ public class PaddleBoat : MonoBehaviour
     void Start()
     {
         boatBody = GetComponent<Rigidbody2D>();
+
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
             boatBody.AddForce(transform.up * forwardForce);
+            boatBody.angularVelocity = 0.0f;
             boatBody.AddTorque(sideForce);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             boatBody.AddForce(transform.up * forwardForce);
+            boatBody.angularVelocity = 0.0f;
             boatBody.AddTorque(-sideForce);
-
-
         }
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+
+
+        Debug.Log(boatBody.angularVelocity);
         SlowVelocity();
     }
 

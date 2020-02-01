@@ -79,9 +79,7 @@ public class Player : MonoBehaviour
                 //If the object is grabbable, set it's parent to the interact zone and reset its position.
                 if (interactableObject.isGrabbable)
                 {
-                    grabbedObject = interactableObject.gameObject;
-                    grabbedObject.transform.parent = interactZone.transform;
-                    grabbedObject.transform.localPosition = new Vector3(0, 0, 0);
+                    GrabObject(interactableObject.gameObject);
                 }
 
                 interactZone.GetComponent<InteractZone>().activeInteractableObject.OnUse(this);
@@ -90,9 +88,21 @@ public class Player : MonoBehaviour
             //If holding something, let go.
             else if (grabbedObject)
             {
-                grabbedObject.transform.parent = boat.transform;
-                grabbedObject = null;
+                LetGoOfObject();
             }
         }
+    }
+
+    public void GrabObject(GameObject interactableObject)
+    {
+        grabbedObject = interactableObject;
+        grabbedObject.transform.parent = interactZone.transform;
+        grabbedObject.transform.localPosition = new Vector3(0, 0, 0);
+    }
+
+    public void LetGoOfObject()
+    {
+        grabbedObject.transform.parent = boat.transform;
+        grabbedObject = null;
     }
 }

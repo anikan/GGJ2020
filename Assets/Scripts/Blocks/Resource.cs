@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wood : Interactable
+public enum ResourceType
 {
+    Wood, Fabric, Metal
+}
+
+public class Resource : Interactable
+{
+    public ResourceType type;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +24,12 @@ public class Wood : Interactable
 
     public override void OnUse(Player player)
     {
+    }
+
+    public void SetResourceType(ResourceType type)
+    {
+        this.type = type;
+
+        //Set materials based on type.
     }
 }

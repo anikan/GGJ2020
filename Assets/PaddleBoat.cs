@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PaddleBoat : MonoBehaviour
 {
-
     public float maxVelocity;
 
     public float forwardForce = 1.0f;
@@ -21,15 +20,19 @@ public class PaddleBoat : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            boatBody.AddForce(new Vector2(-sideForce, forwardForce));
+            boatBody.AddForce(transform.up * forwardForce);
+            boatBody.AddTorque(sideForce);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            boatBody.AddForce(new Vector2(sideForce, forwardForce));
+            boatBody.AddForce(transform.up * forwardForce);
+            boatBody.AddTorque(-sideForce);
+
+
         }
 
         SlowVelocity();

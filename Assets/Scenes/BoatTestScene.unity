@@ -526,9 +526,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f645b1ad43dcb748a3957b0cf068a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 1904979629}
+  boatTransform: {fileID: 1904979629}
+  playerTransform: {fileID: 2077527472}
+  playerViewYOffset: -10
+  steeringViewYOffset: -25
   smoothTime: 0.2
-  yOffset: -16.28
+  isFollowingPlayer: 1
 --- !u!81 &1824998179
 AudioListener:
   m_ObjectHideFlags: 0

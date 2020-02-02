@@ -20,6 +20,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject boat;
 
+    [SerializeField]
+    private BlockManager manager;
+
+    [SerializeField]
+    private GameObject blockPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +94,25 @@ public class Player : MonoBehaviour
             //If holding something, let go.
             else if (grabbedObject)
             {
+                //If this is a block, try to place it.
+                if (grabbedObject.GetComponent<Block>())
+                {
+                    if (manager.IsPositionAvailable(grabbedObject.transform.position))
+                    {
+                        GameObject gameObj = Instantiate(blockPrefab);
+                        Block block = gameObj.GetComponent<Block>();
+                        bool successful = manager.AddBlock(block, grabbedObject.transform.position);
+                        if (!successful)
+                            Destroy(gameObj);
+                        else
+                        {
+                            Destroy(grabbedObject);
+                            grabbedObject = null;
+                            return;
+                        }
+                    }
+                }
+
                 LetGoOfObject();
             }
         }

@@ -94,6 +94,11 @@ public class BlockManager : MonoBehaviour
         return selectedBlock;
     }
 
+    public bool IsPositionAvailable(Vector2 worldPosition)
+    {
+        return CanPlaceBlockHere(GetGridIndex(worldPosition));
+    }
+
     // A block is considered disconnected if from the block the player is getting to
     // to the current block, it is unable to access it once the current block has been
     // removed.

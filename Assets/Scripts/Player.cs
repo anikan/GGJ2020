@@ -24,11 +24,13 @@ public class Player : MonoBehaviour
 
     public int money = 0;
 
-    private Interactable currentlyUsingInteractable;
+    public Interactable currentlyUsingInteractable;
 
     private Vector2 velocity;
 
     private Vector2 facingDirection;
+
+    public GameObject newBlockIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -148,14 +150,11 @@ public class Player : MonoBehaviour
             if (Input.GetAxis("Vertical") > 0.1)
             {
                 facingDirection = new Vector2(0, interactZoneOffset);
-//                interactZone.transform.localPosition = new Vector3(0, interactZoneOffset, 0);
             }
 
             else if (Input.GetAxis("Vertical") < -0.1f)
             {
                 facingDirection = new Vector2(0, -interactZoneOffset);
-
-                //interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
             }
         }
 
@@ -166,22 +165,17 @@ public class Player : MonoBehaviour
             if (Input.GetAxis("Horizontal") > 0.1f)
             {
                 facingDirection = new Vector2(interactZoneOffset, 0.0f);
-
-                //interactZone.transform.localPosition = new Vector3(interactZoneOffset, 0, 0);
             }
 
             else if (Input.GetAxis("Horizontal") < -0.1f)
             {
                 facingDirection = new Vector2(-interactZoneOffset, 0.0f);
-
-                //interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
             }
         }
 
         velocity += -velocity * drag * Time.deltaTime;
 
         interactZone.transform.localPosition = facingDirection;
-
     }
 
     private void FixedUpdate()

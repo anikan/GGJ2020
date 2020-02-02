@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockManager : MonoBehaviour
 {
-    private Dictionary<Vector2Int, Block> grid; // the grid that holds the blocks
+    public Dictionary<Vector2Int, Block> grid; // the grid that holds the blocks
     private Vector2 blockDimension = Vector2.one; // dimension of the blocks (assuming 1x1)
 
     public void Awake()
@@ -20,7 +20,7 @@ public class BlockManager : MonoBehaviour
     }
 
     // Converts World Position to the internal grid position
-    private Vector2Int GetGridIndex(Vector2 worldPosition)
+    public Vector2Int GetGridIndex(Vector2 worldPosition)
     {
         Vector2 gridPosition = worldPosition - new Vector2(this.transform.position.x, this.transform.position.y);
         gridPosition = new Vector2(gridPosition.x / blockDimension.x, gridPosition.y / blockDimension.y);

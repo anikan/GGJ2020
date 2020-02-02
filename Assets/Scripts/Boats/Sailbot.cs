@@ -5,8 +5,20 @@ using UnityEngine;
 public class Sailbot : BoatPart
 {
     public Transform sailTransform;
+    public Transform clothTransform;
     public float sailRotateSpeed = 30.0f;
     public bool raised = false;
+
+    public float undeployedSailWidth = 0.13f;
+    public float deployedSailWidth = 0.75f;
+
+    private Coroutine deployingRoutine;
+
+    protected override void Start()
+    {
+        base.Start();
+        UndeploySail();
+    }
 
     protected override void CheckInputsAndSteer()
     {
@@ -23,11 +35,11 @@ public class Sailbot : BoatPart
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            raised = true;
+            DeploySail();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            raised = false;
+            UndeploySail();
         }
     }
 
@@ -41,5 +53,38 @@ public class Sailbot : BoatPart
             ApplyForwardForce(sailTransform.up, sailTransform.position);
         }
 
+    }
+
+    protected void DeploySail()
+    {
+        if (deployingRoutine != null)
+        {
+            StopCoroutine(deployingRoutine);
+        }
+        deployingRoutine = StartCoroutine(DeploySail(deployedSailWidth, 0.3f));
+        raised = true;
+
+    }
+
+    protected void UndeploySail()
+    {
+        if (deployingRoutine != null)
+        {
+            StopCoroutine(deployingRoutine);
+        }
+        deployingRoutine = StartCoroutine(DeploySail(undeployedSailWidth, 0.3f));
+        raised = false;
+
+    }
+
+    protected IEnumerator DeploySail(float targetWidth, float duration)
+    {
+        float startScale = clothTransform.localScale.x;
+        for (float i = 0; i < duration; i+=Time.deltaTime)
+        {
+            float newWidth = Mathf.Lerp(startScale, targetWidth, i / duration);
+            clothTransform.localScale = new Vector3(newWidth, clothTransform.localScale.y, clothTransform.localScale.z);
+            yield return null;
+        }
     }
 }

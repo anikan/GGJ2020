@@ -4866,6 +4866,7 @@ MonoBehaviour:
   controllingRigidbody: {fileID: 0}
   maxVelocity: 10
   forwardForce: 0.2
+  activelyBeingUsed: 0
   motorModelTransform: {fileID: 5950148217264880663}
   maxMotorAngle: 45
   motorRotateSpeed: 60

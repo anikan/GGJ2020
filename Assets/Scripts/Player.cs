@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
             velocity = Vector2.zero;
         }
 
+        transform.rotation = Quaternion.identity;
+
         //Cap at max velocity.
         /*
         if (rigidbody.velocity.magnitude > maxSpeed)
@@ -173,10 +175,18 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (velocity != Vector2.zero)
         {
-            transform.position += new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime);
+            Vector3 newPosition = transform.position + new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime);
+            Vector2Int index = manager.GetGridIndex(newPosition);
+            if (manager.grid.ContainsKey(index))
+            {
+                transform.position = newPosition;
+            }
+            else
+            {
+                velocity = Vector2.zero;
+            }
         }
     }
 

@@ -66,6 +66,7 @@ public abstract class BoatPart : Block
     protected void ApplyForwardForce(Vector3 dir, Vector3 pos)
     {
         controllingRigidbody.AddForceAtPosition(dir * forwardForce, pos);
+        Debug.DrawRay(pos, dir * forwardForce);
         PreventSliding();
     }
 
@@ -73,6 +74,6 @@ public abstract class BoatPart : Block
     {
         Vector2 boatForward = controllingRigidbody.transform.up;
         Vector2 currentVelocity = controllingRigidbody.velocity;
-        controllingRigidbody.velocity = boatForward * Vector2.Dot(currentVelocity, boatForward);
+        //controllingRigidbody.velocity = boatForward * Vector2.Dot(currentVelocity, boatForward);
     }
 }

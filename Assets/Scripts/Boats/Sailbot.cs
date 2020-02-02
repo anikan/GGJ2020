@@ -9,7 +9,7 @@ public class Sailbot : BoatPart
 
     protected override void Update()
     {
-        base.Update();
+        base.Update();//Help
 
         float angleToRotate = sailRotateSpeed * Time.deltaTime;
         if (Input.GetKey(KeyCode.A))

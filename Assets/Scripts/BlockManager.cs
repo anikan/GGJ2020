@@ -24,7 +24,7 @@ public class BlockManager : MonoBehaviour
     {
         Vector2 gridPosition = worldPosition - new Vector2(this.transform.position.x, this.transform.position.y);
         gridPosition = new Vector2(gridPosition.x / blockDimension.x, gridPosition.y / blockDimension.y);
-        return new Vector2Int((int)gridPosition.x, (int)gridPosition.y);
+        return new Vector2Int(Mathf.RoundToInt(gridPosition.x), Mathf.RoundToInt(gridPosition.y));
     }
 
     // Checks the north, south, west, and east locations for a neighbor

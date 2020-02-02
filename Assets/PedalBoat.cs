@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PedalBoat : Boat
+public class PedalBoat : BoatPart
 {
     public Transform leftPedal;
     public Transform rightPedal;

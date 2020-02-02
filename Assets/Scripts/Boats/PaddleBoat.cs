@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaddleBoat : Boat
+public class PaddleBoat : BoatPart
 {
     public Transform leftPaddle;
     public Transform rightPaddle;

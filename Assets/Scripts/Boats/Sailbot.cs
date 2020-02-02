@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sailbot : Boat
+public class Sailbot : BoatPart
 {
     public Transform sailTransform;
     public float sailRotateSpeed = 30.0f;

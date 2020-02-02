@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Motorboat : Boat
+public class Motorboat : BoatPart
 {
     public float maxMotorAngle = 45.0f;
     public float motorRotateSpeed = 15.0f;

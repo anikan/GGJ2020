@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boat : MonoBehaviour
+public class BoatPart : MonoBehaviour
 {
     public Rigidbody2D controllingRigidbody;
     public Transform boatBodyTransform;

@@ -8,6 +8,7 @@ public class BlockPrefabs : MonoBehaviour
 
     public GameObject needResourceIconPrefab;
     public GameObject blockPrefab;
+    public Player playerRef;
 
     private void Awake()
     {

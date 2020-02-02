@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class TestBlockScript : MonoBehaviour
 {
-    public Block prefab = null;
+    public GameObject prefab = null;
     public BlockManager manager = null;
     public Rigidbody rb = null;
     public float targetSpeed = 5.0f;
@@ -25,24 +25,27 @@ public class TestBlockScript : MonoBehaviour
 
         if(Input.GetKey(KeyCode.E))
         {
-            Block block = Instantiate(prefab);
-            manager.AddBlock(block, this.transform.position);
+            GameObject gameObj = Instantiate(prefab);
+            Block block = gameObj.GetComponent<Block>();
+            bool successful = manager.AddBlock(block, this.transform.position);
+            if (!successful)
+                Destroy(gameObj);
         }
         if(Input.GetKey(KeyCode.W))
         {
-            targetVelocity.x += 1;
+            targetVelocity.y += 1;
         }
         if(Input.GetKey(KeyCode.A))
         {
-            targetVelocity.y -= 1;
-        }
-        if(Input.GetKey(KeyCode.S))
-        {
             targetVelocity.x -= 1;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            targetVelocity.y -= 1;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            targetVelocity.y += 1;
+            targetVelocity.x += 1;
         }
 
         targetVelocity = Vector3.Normalize(targetVelocity) * targetSpeed;

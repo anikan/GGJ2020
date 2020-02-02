@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6911520bf39c834e98fd706187f6313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8860906097888058277, guid: 8916104075160574592d08e6dc80bc96, type: 3}
+  prefab: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96, type: 3}
   manager: {fileID: 1092140419}
   rb: {fileID: 1517440632}
   targetSpeed: 5

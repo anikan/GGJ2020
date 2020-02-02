@@ -16,13 +16,24 @@ public class BlockManager : MonoBehaviour
         foreach(Block block in blocks)
         {
             SudoAddBlock(block, block.transform.position);
+
+            block.OnAttach(this.transform);
+
         }
     }
 
     // Converts World Position to the internal grid position
     public Vector2Int GetGridIndex(Vector2 worldPosition)
     {
-        Vector2 gridPosition = worldPosition - new Vector2(this.transform.position.x, this.transform.position.y);
+        // Scale it down to 1
+        Vector2 gridPosition = worldPosition / this.transform.localScale;
+
+        // Rotate in the opposite direction
+        Vector2 origin = this.transform.position;
+        gridPosition = gridPosition - origin;
+        gridPosition = Quaternion.Euler(0, 0, -this.transform.rotation.eulerAngles.z) * gridPosition;
+
+        // Translate it into grid space
         gridPosition = new Vector2(gridPosition.x / blockDimension.x, gridPosition.y / blockDimension.y);
         return new Vector2Int(Mathf.RoundToInt(gridPosition.x), Mathf.RoundToInt(gridPosition.y));
     }
@@ -54,8 +65,12 @@ public class BlockManager : MonoBehaviour
     {
         Vector2Int gridIndex = GetGridIndex(worldPosition);
         grid[gridIndex] = block;
-        block.transform.position = this.transform.position + new Vector3(gridIndex.x, gridIndex.y, 0);
+        block.transform.position = this.transform.position;
+        block.transform.position += this.transform.rotation * new Vector3(gridIndex.x, gridIndex.y, 0);
+        block.transform.rotation = this.transform.rotation;
         block.transform.SetParent(this.transform);
+        block.OnAttach(transform);
+
         return true;
     }
 
@@ -66,14 +81,8 @@ public class BlockManager : MonoBehaviour
 
         // Check if there is an undamaged neighbor that we can attach to
         if (CanPlaceBlockHere(gridIndex))
-        {
-            // Add it to the grid
-            grid[gridIndex] = block;
-            block.transform.position = this.transform.position + new Vector3(gridIndex.x, gridIndex.y, 0);
-            block.transform.SetParent(this.transform);
-            block.OnAttach(transform);
-            return true;
-        }
+            return SudoAddBlock(block, worldPosition);
+
         return false;
     }
 

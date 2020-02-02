@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Dispenser : Interactable
+public class Dispenser : Block
 {
     public GameObject resourcePrefab;
     public ResourceType resourceType;

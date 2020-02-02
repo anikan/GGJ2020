@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3770832161264171938}
   - component: {fileID: 3770832161264171939}
   - component: {fileID: 3770832161264171948}
-  - component: {fileID: 3770832161264171936}
+  - component: {fileID: 1231006501}
   m_Layer: 0
   m_Name: ShipPiece
   m_TagString: Untagged
@@ -107,7 +107,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.9999999}
   m_EdgeRadius: 0
---- !u!114 &3770832161264171936
+--- !u!114 &1231006501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,11 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3770832161264171949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37592ba33ea3ca645b9959c60f7f5c9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 911374da83884b14b905bf249de444bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isGrabbable: 1
-  hp: 0
-  isSafeToAttachTo: 1
-  mass: 1
-  visited: 0

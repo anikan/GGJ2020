@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Block : Interactable
 {
-    [SerializeField] private int hp;
+    public int maxHP;
+    public int hp;
+
     public bool isSafeToAttachTo = true;
     public float mass = 1;
     public bool visited; // for Block Manager use only
@@ -15,6 +17,8 @@ public class Block : Interactable
 
     [SerializeField]
     private Vector3 resourceUIIconOffset;
+
+    public bool wasRepaired = false;
 
     public override void OnUse(Player player)
     {
@@ -31,12 +35,14 @@ public class Block : Interactable
         }
 
         resourceUIIcon = GameObject.Instantiate<GameObject>(BlockPrefabs.instance.needResourceIconPrefab);
-        resourceUIIcon.transform.localPosition = resourceUIIconOffset;
         resourceUIIcon.transform.parent = this.transform;
+        resourceUIIcon.transform.localPosition = resourceUIIconOffset;
     }
 
     public void OnRepair()
     {
+        wasRepaired = true;
+        hp = maxHP;
         if (resourceUIIcon)
         {
             Destroy(resourceUIIcon);

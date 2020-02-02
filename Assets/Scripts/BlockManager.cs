@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BlockPrefabs))]
 public class BlockManager : MonoBehaviour
 {
     public Dictionary<Vector2Int, Block> grid; // the grid that holds the blocks
     private Vector2 blockDimension = Vector2.one; // dimension of the blocks (assuming 1x1)
+    private Player player; // a reference to the player
+    private KeyValuePair<bool, Vector2Int>[] doesDirectionHaveBlock = new KeyValuePair<bool, Vector2Int>[4]; // for pushing players to nearest safe block
 
     public void Awake()
     {
         grid = new Dictionary<Vector2Int, Block>();
+
+        // Get a reference to the player from BlockPrefabs.cs
+        player = this.GetComponent<BlockPrefabs>().playerRef;
 
         // If there are already children blocks in the BlockManager object, add them
         var blocks = GetComponentsInChildren<Block>();
@@ -36,6 +42,21 @@ public class BlockManager : MonoBehaviour
         // Translate it into grid space
         gridPosition = new Vector2(gridPosition.x / blockDimension.x, gridPosition.y / blockDimension.y);
         return new Vector2Int(Mathf.RoundToInt(gridPosition.x), Mathf.RoundToInt(gridPosition.y));
+    }
+
+    // Converts internal grid position to World Position
+    public Vector2 GetWorldPosition(Vector2Int gridIndex)
+    {
+        // Translate it
+        Vector2 worldPos = new Vector3(gridIndex.x, gridIndex.y, 0) + this.transform.position;
+
+        // Rotate it
+        worldPos = this.transform.rotation * worldPos;
+
+        // Scale it
+        worldPos = worldPos * this.transform.localScale;
+
+        return worldPos;
     }
 
     // Checks the north, south, west, and east locations for a neighbor
@@ -90,7 +111,7 @@ public class BlockManager : MonoBehaviour
     // Returns null if there is no block there
     // NOTE: This will run a check and also disconnect all blocks!
     // How to determine which one is part of the ship: which side the user is standing on
-    public Block RemoveBlock(Vector2 worldPosition, Vector2 playerWorldPosition)
+    public Block RemoveBlock(Vector2 worldPosition)
     {
         Vector2Int gridIndex = GetGridIndex(worldPosition);
         if (!grid.ContainsKey(gridIndex)) return null;
@@ -98,8 +119,39 @@ public class BlockManager : MonoBehaviour
         Block selectedBlock = grid[gridIndex];
         grid[gridIndex].transform.SetParent(null);
         grid.Remove(gridIndex);
+        selectedBlock.OnStopUsing(player);
 
-        RemoveDisconnectedBlocks(playerWorldPosition);
+        // Move the player to the nearest block if the player is standing on the destroyed block
+        Vector2Int playerGridIndex = GetGridIndex(player.transform.position);
+
+        if(playerGridIndex == gridIndex)
+        {
+            // We know that the ship is a connected component, which means we can push the player to a neighboring block
+            // After we grab the available neighbors, get their actual positions and find the one the player is closest to
+            // Force the player to be on that position
+            Vector2Int north = new Vector2Int(gridIndex.x, gridIndex.y + 1);
+            Vector2Int south = new Vector2Int(gridIndex.x, gridIndex.y - 1);
+            Vector2Int east = new Vector2Int(gridIndex.x - 1, gridIndex.y);
+            Vector2Int west = new Vector2Int(gridIndex.x + 1, gridIndex.y);
+
+            // Update array with whether or not a block is there
+            doesDirectionHaveBlock[0] = new KeyValuePair<bool, Vector2Int>(grid.ContainsKey(north), north);
+            doesDirectionHaveBlock[1] = new KeyValuePair<bool, Vector2Int>(grid.ContainsKey(south), south);
+            doesDirectionHaveBlock[2] = new KeyValuePair<bool, Vector2Int>(grid.ContainsKey(east), east);
+            doesDirectionHaveBlock[3] = new KeyValuePair<bool, Vector2Int>(grid.ContainsKey(west), west);
+
+            // TODO: Push to nearest. Right now, just picking an arbtirary one
+            for (int i = 0; i < doesDirectionHaveBlock.Length; ++i)
+            {
+                if (doesDirectionHaveBlock[i].Key)
+                {
+                    player.transform.position = GetWorldPosition(doesDirectionHaveBlock[i].Value);
+                    break;
+                }
+            }
+        }
+
+        RemoveDisconnectedBlocks(player.transform.position);
         return selectedBlock;
     }
 

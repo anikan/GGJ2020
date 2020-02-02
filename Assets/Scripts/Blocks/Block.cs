@@ -20,6 +20,11 @@ public class Block : Interactable
 
     public bool wasRepaired = false;
 
+    public virtual void OnAttach(Transform blockParent)
+    {
+
+    }
+
     public override void OnUse(Player player)
     {
         // TO FILL

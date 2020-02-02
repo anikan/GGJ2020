@@ -71,7 +71,7 @@ public class BlockManager : MonoBehaviour
             grid[gridIndex] = block;
             block.transform.position = new Vector3(gridIndex.x, gridIndex.y, 0);
             block.transform.SetParent(this.transform);
-
+            block.OnAttach(transform);
             return true;
         }
         return false;

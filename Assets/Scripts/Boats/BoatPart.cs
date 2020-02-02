@@ -48,7 +48,7 @@ public abstract class BoatPart : Block
 
     protected virtual void Update()
     {
-        if (activelyBeingUsed)
+        if (SteeringBlock.activelySteering || activelyBeingUsed)
         {
             CheckInputsAndSteer();
         }

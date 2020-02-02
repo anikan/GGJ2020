@@ -48,14 +48,16 @@ public class SeaRNG : MonoBehaviour
             {
                 GameObject spawnedObject = GameObject.Instantiate<GameObject>(entry.objectToSpawn);
 
-                spawnedObject.transform.position = new Vector3(GetRandomHorizontalPosition(), BlockPrefabs.instance.playerRef.transform.position.y + 20 + Random.Range(-10.0f, 10.0f));
+                Vector3 playerPosition = BlockPrefabs.instance.playerRef.transform.position;
+
+                spawnedObject.transform.position = playerPosition + GetRandomRelativePosition();
             }
         }
     }
 
-    float GetRandomHorizontalPosition()
+    Vector3 GetRandomRelativePosition()
     {
-        return Random.Range(-100, 100);
+        return new Vector3(Random.Range(-100.0f, 100.0f), 20.0f + Random.Range(-10.0f, 10.0f));
     }
 
     IEnumerator SpawnItem()

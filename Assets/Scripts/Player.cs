@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     {
         //Facing right initially
         facingDirection = new Vector2(1.0f, 0.0f);
+        newBlockIndicator.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,6 +54,22 @@ public class Player : MonoBehaviour
         }
 
         transform.rotation = Quaternion.identity;
+
+        //If holding an undeployed block and no interactable is found, place the indicator.
+        if (grabbedObject && grabbedObject.GetComponent<UndeployedBlock>() && manager.IsPositionAvailable(grabbedObject.transform.position))
+        {
+            newBlockIndicator.transform.parent = boat.transform;
+
+            Vector2Int gridIndex = manager.GetGridIndex(grabbedObject.transform.position);
+            newBlockIndicator.transform.localPosition = new Vector3(gridIndex.x, gridIndex.y);
+
+            newBlockIndicator.SetActive(true);
+        }
+
+        else
+        {
+            newBlockIndicator.SetActive(false);
+        }
 
         //Cap at max velocity.
         /*

@@ -24,17 +24,20 @@ public class Player : MonoBehaviour
 
     public int money = 0;
 
-    private Interactable currentlyUsingInteractable;
+    public Interactable currentlyUsingInteractable;
 
     private Vector2 velocity;
 
     private Vector2 facingDirection;
+
+    public GameObject newBlockIndicator;
 
     // Start is called before the first frame update
     void Start()
     {
         //Facing right initially
         facingDirection = new Vector2(1.0f, 0.0f);
+        newBlockIndicator.SetActive(false);
     }
 
     // Update is called once per frame
@@ -51,6 +54,22 @@ public class Player : MonoBehaviour
         }
 
         transform.rotation = Quaternion.identity;
+
+        //If holding an undeployed block and no interactable is found, place the indicator.
+        if (grabbedObject && grabbedObject.GetComponent<UndeployedBlock>() && manager.IsPositionAvailable(grabbedObject.transform.position))
+        {
+            newBlockIndicator.transform.parent = boat.transform;
+
+            Vector2Int gridIndex = manager.GetGridIndex(grabbedObject.transform.position);
+            newBlockIndicator.transform.localPosition = new Vector3(gridIndex.x, gridIndex.y);
+
+            newBlockIndicator.SetActive(true);
+        }
+
+        else
+        {
+            newBlockIndicator.SetActive(false);
+        }
 
         //Cap at max velocity.
         /*
@@ -148,14 +167,11 @@ public class Player : MonoBehaviour
             if (Input.GetAxis("Vertical") > 0.1)
             {
                 facingDirection = new Vector2(0, interactZoneOffset);
-//                interactZone.transform.localPosition = new Vector3(0, interactZoneOffset, 0);
             }
 
             else if (Input.GetAxis("Vertical") < -0.1f)
             {
                 facingDirection = new Vector2(0, -interactZoneOffset);
-
-                //interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
             }
         }
 
@@ -166,22 +182,17 @@ public class Player : MonoBehaviour
             if (Input.GetAxis("Horizontal") > 0.1f)
             {
                 facingDirection = new Vector2(interactZoneOffset, 0.0f);
-
-                //interactZone.transform.localPosition = new Vector3(interactZoneOffset, 0, 0);
             }
 
             else if (Input.GetAxis("Horizontal") < -0.1f)
             {
                 facingDirection = new Vector2(-interactZoneOffset, 0.0f);
-
-                //interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
             }
         }
 
         velocity += -velocity * drag * Time.deltaTime;
 
         interactZone.transform.localPosition = facingDirection;
-
     }
 
     private void FixedUpdate()

@@ -561,11 +561,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
-    - target: {fileID: 8860906097888058277, guid: 8916104075160574592d08e6dc80bc96,
-        type: 3}
-      propertyPath: resourceUIIconOffset.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8916104075160574592d08e6dc80bc96, type: 3}
 --- !u!4 &1262516252 stripped
@@ -797,7 +792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800273842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -16.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -862,7 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   needResourceIconPrefab: {fileID: 4272034545308050774, guid: 083058fb86d14714bb204d5d21454e33,
     type: 3}
-  blockPrefab: {fileID: 8860906097888058275, guid: 59ad12d1405348c4bb8dcd92ee147ea7,
+  blockPrefab: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
     type: 3}
 --- !u!1001 &2077527471
 PrefabInstance:
@@ -977,11 +972,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3770832161264171936, guid: 32bbfc9356100d5469672aed007fe99a,
-        type: 3}
-      propertyPath: hp
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3770832161264171937, guid: 32bbfc9356100d5469672aed007fe99a,
         type: 3}
       propertyPath: m_LocalPosition.x

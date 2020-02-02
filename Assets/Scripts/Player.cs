@@ -23,9 +23,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private BlockManager manager;
 
-    [SerializeField]
-    private GameObject blockPrefab;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -95,11 +92,11 @@ public class Player : MonoBehaviour
             else if (grabbedObject)
             {
                 //If this is a block, try to place it.
-                if (grabbedObject.GetComponent<Block>())
+                if (grabbedObject.GetComponent<UndeployedBlock>())
                 {
                     if (manager.IsPositionAvailable(grabbedObject.transform.position))
                     {
-                        GameObject gameObj = Instantiate(blockPrefab);
+                        GameObject gameObj = Instantiate(BlockPrefabs.instance.blockPrefab);
                         Block block = gameObj.GetComponent<Block>();
                         bool successful = manager.AddBlock(block, grabbedObject.transform.position);
                         if (!successful)
@@ -110,6 +107,19 @@ public class Player : MonoBehaviour
                             grabbedObject = null;
                             return;
                         }
+                    }
+                }
+
+                //If holding a resource over a block, try to repair if it needs it.
+                if (grabbedObject.TryGetComponent<Resource>(out Resource resource) && interactZone.GetComponent<InteractZone>().activeInteractableObject.TryGetComponent<Block>(out Block activeBlock))
+                {
+                    if (activeBlock.hp < activeBlock.maxHP)
+                    {
+                        activeBlock.OnRepair();
+
+                        Destroy(grabbedObject);
+                        grabbedObject = null;
+                        return;
                     }
                 }
 

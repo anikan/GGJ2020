@@ -10,6 +10,8 @@ public class BlockPrefabs : MonoBehaviour
     public GameObject blockPrefab;
     public Player playerRef;
 
+    public Material repairedMaterial;
+
     private void Awake()
     {
         if (instance)

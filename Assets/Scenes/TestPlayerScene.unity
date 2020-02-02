@@ -1344,6 +1344,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1486980904}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1846565031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2077527471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57268937367fa0c4bb63c2b99903719b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1904979627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1425,8 @@ MonoBehaviour:
     type: 3}
   blockPrefab: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
     type: 3}
+  playerRef: {fileID: 1846565031}
+  repairedMaterial: {fileID: 2100000, guid: be61c0e18c1e1e346b9f1de3316e58a5, type: 2}
 --- !u!1001 &2077527471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1438,7 +1452,7 @@ PrefabInstance:
     - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
         type: 3}
       propertyPath: accelerationSpeed
-      value: 7.5
+      value: 66.6
       objectReference: {fileID: 0}
     - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
         type: 3}
@@ -1451,6 +1465,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8860906097888058275, guid: 59ad12d1405348c4bb8dcd92ee147ea7,
         type: 3}
+    - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
+        type: 3}
+      propertyPath: drag
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1573681351524975802, guid: 13f99686d45ec614ab0607391a4d659e,
         type: 3}
       propertyPath: m_Constraints

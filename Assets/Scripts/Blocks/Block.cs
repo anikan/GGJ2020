@@ -53,6 +53,9 @@ public class Block : Interactable
     {
         wasRepaired = true;
         hp = maxHP;
+
+        GetComponent<Renderer>().material = BlockPrefabs.instance.repairedMaterial;
+
         if (resourceUIIcon)
         {
             Destroy(resourceUIIcon);

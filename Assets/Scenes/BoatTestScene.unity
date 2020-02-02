@@ -561,6 +561,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 8860906097888058279, guid: 8916104075160574592d08e6dc80bc96,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fe75c7ddb3debe42ba12de6390cc05c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8916104075160574592d08e6dc80bc96, type: 3}
 --- !u!4 &1262516252 stripped
@@ -937,7 +942,8 @@ MonoBehaviour:
     type: 3}
   blockPrefab: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
     type: 3}
-  playerRef: {fileID: 0}
+  playerRef: {fileID: 2054610447}
+  repairedMaterial: {fileID: 2100000, guid: be61c0e18c1e1e346b9f1de3316e58a5, type: 2}
 --- !u!50 &1904979631
 Rigidbody2D:
   serializedVersion: 4
@@ -985,6 +991,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2054610447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2077527471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57268937367fa0c4bb63c2b99903719b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2077527471
 PrefabInstance:
   m_ObjectHideFlags: 0

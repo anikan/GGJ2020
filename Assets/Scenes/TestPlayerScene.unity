@@ -405,7 +405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrabbable: 0
-  resourcePrefab: {fileID: 7104972893692972553}
+  resourcePrefab: {fileID: 2403302115140873562, guid: 01262d78f650a984e81799d1c97e49a9,
+    type: 3}
   resourceType: 1
 --- !u!61 &1125048588
 BoxCollider2D:
@@ -1108,9 +1109,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01262d78f650a984e81799d1c97e49a9, type: 3}
---- !u!1 &7104972893692972553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2403302115140873562, guid: 01262d78f650a984e81799d1c97e49a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7104972893692972552}
-  m_PrefabAsset: {fileID: 0}

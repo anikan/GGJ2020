@@ -111,7 +111,9 @@ public class Player : MonoBehaviour
                 }
 
                 //If holding a resource over a block, try to repair if it needs it.
-                if (grabbedObject.TryGetComponent<Resource>(out Resource resource) && interactZone.GetComponent<InteractZone>().activeInteractableObject.TryGetComponent<Block>(out Block activeBlock))
+                if (grabbedObject.TryGetComponent<Resource>(out Resource resource) && 
+                    interactZone.GetComponent<InteractZone>().activeInteractableObject && 
+                    interactZone.GetComponent<InteractZone>().activeInteractableObject.TryGetComponent<Block>(out Block activeBlock))
                 {
                     if (activeBlock.hp < activeBlock.maxHP)
                     {

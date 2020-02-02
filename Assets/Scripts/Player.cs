@@ -28,11 +28,13 @@ public class Player : MonoBehaviour
 
     private Vector2 velocity;
 
+    private Vector2 facingDirection;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        //Facing right initially
+        facingDirection = new Vector2(1.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -145,12 +147,15 @@ public class Player : MonoBehaviour
 
             if (Input.GetAxis("Vertical") > 0.1)
             {
-                interactZone.transform.localPosition = new Vector3(0, interactZoneOffset, 0);
+                facingDirection = new Vector2(0, interactZoneOffset);
+//                interactZone.transform.localPosition = new Vector3(0, interactZoneOffset, 0);
             }
 
             else if (Input.GetAxis("Vertical") < -0.1f)
             {
-                interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
+                facingDirection = new Vector2(0, -interactZoneOffset);
+
+                //interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
             }
         }
 
@@ -160,16 +165,22 @@ public class Player : MonoBehaviour
 
             if (Input.GetAxis("Horizontal") > 0.1f)
             {
-                interactZone.transform.localPosition = new Vector3(interactZoneOffset, 0, 0);
+                facingDirection = new Vector2(interactZoneOffset, 0.0f);
+
+                //interactZone.transform.localPosition = new Vector3(interactZoneOffset, 0, 0);
             }
 
             else if (Input.GetAxis("Horizontal") < -0.1f)
             {
-                interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
+                facingDirection = new Vector2(-interactZoneOffset, 0.0f);
+
+                //interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
             }
         }
 
         velocity += -velocity * drag * Time.deltaTime;
+
+        interactZone.transform.localPosition = facingDirection;
 
     }
 

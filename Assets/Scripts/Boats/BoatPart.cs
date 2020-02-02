@@ -12,7 +12,7 @@ public abstract class BoatPart : Block
     public float maxVelocity = 50.0f;
     public float forwardForce = 1.0f;
 
-    private bool activelyBeingUsed;
+    public bool activelyBeingUsed;
 
     public override void OnUse(Player player)
     {

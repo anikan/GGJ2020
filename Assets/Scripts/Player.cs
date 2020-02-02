@@ -14,8 +14,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float interactZoneOffset;
 
-    private Rigidbody2D rigidbody;
-
     private GameObject grabbedObject;
 
     [SerializeField]
@@ -34,7 +32,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -44,6 +42,7 @@ public class Player : MonoBehaviour
         {
             HandleMovement();
         }
+
         else
         {
             velocity = Vector2.zero;
@@ -131,37 +130,35 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        float changeInVelocity = accelerationSpeed * Time.deltaTime;
+        float horizontalChangeInVelocity = Input.GetAxis("Horizontal") * accelerationSpeed * Time.deltaTime;
+        float verticalChangeInVelocity = Input.GetAxis("Vertical") * accelerationSpeed * Time.deltaTime;
 
         if (Input.GetAxis("Vertical") != 0)
         {
-            // rigidbody.AddForce(new Vector2(0, Input.GetAxis("Vertical")), ForceMode2D.Impulse);
+            velocity.y = Mathf.Clamp(velocity.y + verticalChangeInVelocity, -maxSpeed, maxSpeed);
+
             if (Input.GetAxis("Vertical") > 0.1)
             {
-                velocity.y = Mathf.Clamp(velocity.y + changeInVelocity, -maxSpeed, maxSpeed);
                 interactZone.transform.localPosition = new Vector3(0, interactZoneOffset, 0);
             }
 
             else if (Input.GetAxis("Vertical") < -0.1f)
             {
-                velocity.y = Mathf.Clamp(velocity.y - changeInVelocity, -maxSpeed, maxSpeed);
                 interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
             }
         }
 
         if (Input.GetAxis("Horizontal") != 0)
         {
-            //rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal"), 0), ForceMode2D.Impulse);
+            velocity.x = Mathf.Clamp(velocity.x + horizontalChangeInVelocity, -maxSpeed, maxSpeed);
 
             if (Input.GetAxis("Horizontal") > 0.1f)
             {
-                velocity.x = Mathf.Clamp(velocity.x + changeInVelocity, -maxSpeed, maxSpeed);
                 interactZone.transform.localPosition = new Vector3(interactZoneOffset, 0, 0);
             }
 
             else if (Input.GetAxis("Horizontal") < -0.1f)
             {
-                velocity.x = Mathf.Clamp(velocity.x - changeInVelocity, -maxSpeed, maxSpeed);
                 interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
             }
         }

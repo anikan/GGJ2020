@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UndeployedBlock : Grabbable
+public class Grabbable : MonoBehaviour
 {
-    public GameObject blockPrefab;
     // Start is called before the first frame update
     void Start()
     {

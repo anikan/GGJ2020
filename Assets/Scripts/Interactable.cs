@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public bool isGrabbable;
     public bool stopsPlayerMovement;
     public abstract void OnUse(Player player);
     public abstract void OnStopUsing(Player player);

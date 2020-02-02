@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractZone : MonoBehaviour
 {
     public Interactable activeInteractableObject;
+    public Grabbable activeGrabbableObject;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,11 @@ public class InteractZone : MonoBehaviour
         {
             activeInteractableObject = other.gameObject.GetComponent<Interactable>();
         }
+
+        if (other.gameObject.GetComponent<Grabbable>())
+        {
+            activeGrabbableObject = other.gameObject.GetComponent<Grabbable>();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -31,6 +37,11 @@ public class InteractZone : MonoBehaviour
         if (other.gameObject.GetComponent<Interactable>() && activeInteractableObject == other.gameObject.GetComponent<Interactable>())
         {
             activeInteractableObject = null;
+        }
+
+        if (other.gameObject.GetComponent<Grabbable>() && activeGrabbableObject == other.gameObject.GetComponent<Grabbable>())
+        {
+            activeGrabbableObject = null;
         }
     }
 }

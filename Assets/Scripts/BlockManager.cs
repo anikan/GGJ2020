@@ -81,13 +81,16 @@ public class BlockManager : MonoBehaviour
     // Returns null if there is no block there
     // NOTE: This will run a check and also disconnect all blocks!
     // How to determine which one is part of the ship: which side the user is standing on
-    public Block RemoveBlock(Vector2 worldPosition, Vector3 playerPosition)
+    public Block RemoveBlock(Vector2 worldPosition, Vector2 playerWorldPosition)
     {
         Vector2Int gridIndex = GetGridIndex(worldPosition);
         if (!grid.ContainsKey(gridIndex)) return null;
 
         Block selectedBlock = grid[gridIndex];
-        RemoveDisconnectedBlocks(gridIndex, playerPosition);
+        grid[gridIndex].transform.SetParent(null);
+        grid.Remove(gridIndex);
+
+        RemoveDisconnectedBlocks(playerWorldPosition);
         return selectedBlock;
     }
 
@@ -97,10 +100,54 @@ public class BlockManager : MonoBehaviour
     // I'm too lazy to read up on decremental connectivity of graphs, so I'll do this sketchily:
     // (1) Run BFS to find all connected components
     // (2) Toss the connected components that the player is not on
-    private void RemoveDisconnectedBlocks(Vector2Int gridIndex, Vector3 playerPosition)
+    // Runtime is O(N) for number of nodes
+    private void RemoveDisconnectedBlocks(Vector2 playerWorldPosition)
     {
         // Convert player position to a grid index
-        // TO DO
-    }
+        Vector2Int playerIndex = GetGridIndex(playerWorldPosition);
 
+        // Something is VERY wrong if the player is not on a grid
+        Debug.Assert(grid.ContainsKey(playerIndex));
+        Block rootNode = grid[playerIndex];
+
+        // Iterate through all blocks and set visited to false
+        // Run BFS from the player position's block
+        // Iterate through all blocks and unparent all those that still hasn't been visited
+        var keys = new List<Vector2Int>(grid.Keys);
+        foreach(var key in keys)
+        {
+            grid[key].visited = false;
+        }
+
+        // BFS
+        Queue<KeyValuePair<Vector2Int, Block>> toVisit = new Queue<KeyValuePair<Vector2Int, Block>>();
+        toVisit.Enqueue(new KeyValuePair<Vector2Int, Block>(playerIndex, rootNode));
+
+        while(toVisit.Count > 0)
+        {
+            var currentNode = toVisit.Dequeue();
+            currentNode.Value.visited = true;
+
+            // Get the neighboring nodes
+            Vector2Int north = new Vector2Int(currentNode.Key.x, currentNode.Key.y + 1);
+            Vector2Int south = new Vector2Int(currentNode.Key.x, currentNode.Key.y - 1);
+            Vector2Int east = new Vector2Int(currentNode.Key.x - 1, currentNode.Key.y);
+            Vector2Int west = new Vector2Int(currentNode.Key.x + 1, currentNode.Key.y);
+
+            if (grid.ContainsKey(north) && !grid[north].visited) toVisit.Enqueue(new KeyValuePair<Vector2Int, Block>(north, grid[north]));
+            if (grid.ContainsKey(south) && !grid[south].visited) toVisit.Enqueue(new KeyValuePair<Vector2Int, Block>(south, grid[south]));
+            if (grid.ContainsKey(east) && !grid[east].visited) toVisit.Enqueue(new KeyValuePair<Vector2Int, Block>(east, grid[east]));
+            if (grid.ContainsKey(west) && !grid[west].visited) toVisit.Enqueue(new KeyValuePair<Vector2Int, Block>(west, grid[west]));
+        }
+
+        // iterate through all blocks and unparent those
+        foreach (var key in keys)
+        {
+            if(!grid[key].visited)
+            {
+                grid[key].transform.SetParent(null);
+                grid.Remove(key);
+            }
+        }
+    }
 }

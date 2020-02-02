@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
         {
             HandleMovement();
         }
+        else
+        {
+            velocity = Vector2.zero;
+        }
 
         //Cap at max velocity.
         /*
@@ -143,19 +147,6 @@ public class Player : MonoBehaviour
                 velocity.y = Mathf.Clamp(velocity.y - changeInVelocity, -maxSpeed, maxSpeed);
                 interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
             }
-            else
-            {
-                {
-                    if (velocity.x > 0)
-                    {
-                        velocity.x = Mathf.Clamp(velocity.x - changeInVelocity, 0.0f, velocity.x);
-                    }
-                    else if (velocity.x < 0)
-                    {
-                        velocity.x = Mathf.Clamp(velocity.x + changeInVelocity, velocity.x, 0.0f);
-                    }
-                }
-            }
         }
 
         if (Input.GetAxis("Horizontal") != 0)
@@ -172,17 +163,6 @@ public class Player : MonoBehaviour
             {
                 velocity.x = Mathf.Clamp(velocity.x - changeInVelocity, -maxSpeed, maxSpeed);
                 interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
-            }
-        }
-        else
-        {
-            if (velocity.x > 0)
-            {
-                velocity.x = Mathf.Clamp(velocity.x - changeInVelocity, 0.0f, velocity.x);
-            }
-            else if (velocity.x < 0)
-            {
-                velocity.x = Mathf.Clamp(velocity.x + changeInVelocity, velocity.x, 0.0f);
             }
         }
 

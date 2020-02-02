@@ -19,6 +19,7 @@ public abstract class BoatPart : Block
         base.OnUse(player);
         activelyBeingUsed = true;
         TopDownLazyFollow.gameCamera.ZoomToBoatView();
+        player.GetComponentInChildren<Collider2D>().enabled = false;
     }
 
     public override void OnStopUsing(Player player)
@@ -26,6 +27,7 @@ public abstract class BoatPart : Block
         base.OnStopUsing(player);
         activelyBeingUsed = false;
         TopDownLazyFollow.gameCamera.ZoomToPlayerView();
+        player.GetComponentInChildren<Collider2D>().enabled = true;
     }
 
     // Start is called before the first frame update

@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BlockPrefabs))]
 public class BlockManager : MonoBehaviour
 {
     public Dictionary<Vector2Int, Block> grid; // the grid that holds the blocks
     private Vector2 blockDimension = Vector2.one; // dimension of the blocks (assuming 1x1)
-    public Player player; // a reference to the player
+    private Player player; // a reference to the player
     private KeyValuePair<bool, Vector2Int>[] doesDirectionHaveBlock = new KeyValuePair<bool, Vector2Int>[4]; // for pushing players to nearest safe block
 
     public void Awake()
     {
         grid = new Dictionary<Vector2Int, Block>();
+
+        // Get a reference to the player from BlockPrefabs.cs
+        player = this.GetComponent<BlockPrefabs>().playerRef;
 
         // If there are already children blocks in the BlockManager object, add them
         var blocks = GetComponentsInChildren<Block>();

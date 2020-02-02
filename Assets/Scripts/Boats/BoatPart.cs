@@ -5,7 +5,6 @@ using UnityEngine;
 public class BoatPart : Block
 {
     public Rigidbody2D controllingRigidbody;
-    public Transform boatBodyTransform;
 
     public float maxVelocity = 50.0f;
     public float forwardForce = 1.0f;
@@ -36,7 +35,7 @@ public class BoatPart : Block
 
     private void PreventSliding()
     {
-        Vector2 boatForward = boatBodyTransform.up;
+        Vector2 boatForward = controllingRigidbody.transform.up;
         Vector2 currentVelocity = controllingRigidbody.velocity;
         controllingRigidbody.velocity = boatForward * Vector2.Dot(currentVelocity, boatForward);
     }

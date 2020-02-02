@@ -7,7 +7,7 @@ using TMPro;
 public class GPSBlock : Block
 {
     public TextMeshProUGUI kilometerText;
-    public float unityToFakeMeterScale = 1.0f;
+    private const float unityToFakeMeterScale = 0.01f;
 
     public static float startingYValue = -1000.0f;
 

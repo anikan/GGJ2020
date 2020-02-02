@@ -19,11 +19,12 @@ public class Motorboat : Boat
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (Input.GetKey(KeyCode.W))
         {
-            ApplyForwardForce(transform, true);
+            ApplyForwardForce(-transform.up, transform.position);
             ParticleSystem.MainModule particleModule = motorParticleSystem.main;
             float newLifetime = particleModule.startLifetime.constant + particleRampSpeed * Time.deltaTime;
             particleModule.startLifetime = new ParticleSystem.MinMaxCurve(Mathf.Clamp(newLifetime, 0.0f, maxParticleLifetime));

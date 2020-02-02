@@ -7,7 +7,7 @@ public enum ResourceType
     Wood, Fabric, Metal
 }
 
-public class Resource : Interactable
+public class Resource : Grabbable
 {
     public ResourceType type;
     // Start is called before the first frame update
@@ -18,15 +18,6 @@ public class Resource : Interactable
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
-
-    public override void OnUse(Player player)
-    {
-    }
-
-    public override void OnStopUsing(Player player)
     {
         
     }

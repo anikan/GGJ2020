@@ -61,15 +61,18 @@ public class Player : MonoBehaviour
             //If not holding anything and there's an interactable object in front, use it.
             if (!grabbedObject && interactZone.TryGetComponent<InteractZone>(out InteractZone zoneComponent))
             {
+                // Try picking up grabbable.
+                Grabbable grabbableObject = zoneComponent.activeGrabbableObject;
+
+                //If the object is grabbable, set it's parent to the interact zone and reset its position.
+                if (grabbableObject)
+                {
+                    GrabObject(grabbableObject.gameObject);
+                }
+
                 Interactable interactableObject = zoneComponent.activeInteractableObject;
                 if (interactableObject && (!currentlyUsingInteractable || currentlyUsingInteractable != interactableObject))
                 {
-                    //If the object is grabbable, set it's parent to the interact zone and reset its position.
-                    if (interactableObject.isGrabbable)
-                    {
-                        GrabObject(interactableObject.gameObject);
-                    }
-
                     if (currentlyUsingInteractable)
                     {
                         currentlyUsingInteractable.OnStopUsing(this);

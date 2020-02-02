@@ -18,6 +18,7 @@ public class Sailbot : BoatPart
     {
         base.Start();
         UndeploySail();
+        allowControlFromWheel = false;
     }
 
     protected override void CheckInputsAndSteer()

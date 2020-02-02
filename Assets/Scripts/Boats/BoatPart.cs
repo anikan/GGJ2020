@@ -12,9 +12,12 @@ public abstract class BoatPart : Block
     public float maxVelocity = 50.0f;
     public float forwardForce = 1.0f;
 
+    [HideInInspector]
     public bool activelyBeingUsed;
+    public bool allowControlFromWheel = true;
 
-    public override void OnUse(Player player)
+
+public override void OnUse(Player player)
     {
         base.OnUse(player);
         activelyBeingUsed = true;

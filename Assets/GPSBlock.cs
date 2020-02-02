@@ -8,23 +8,49 @@ public class GPSBlock : Block
 {
     public TextMeshProUGUI kilometerText;
     public float unityToFakeMeterScale = 1.0f;
-    public Transform boatCenter;
 
-    private float startingYValue = 0.0f;
+    public static float startingYValue = -1000.0f;
+
+    private Transform boatCenter;
+    public float cameraIncrease = 5.0f;
+
+    private bool turnedOn = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        startingYValue = boatCenter.position.y;
+        if (boatCenter == null)
+        {
+            boatCenter = BlockPrefabs.instance.playerRef.boat.transform;
+        }
+        if (startingYValue < -100.0f)
+        {
+            startingYValue = boatCenter.position.y;
+        }
+
+        TopDownLazyFollow.gameCamera.steeringViewYOffset -= cameraIncrease;
+    }
+
+    public override void OnUse(Player player)
+    {
+        base.OnUse(player);
+        turnedOn = !turnedOn;
+        foreach (TextMeshProUGUI textMesh in GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            textMesh.enabled = turnedOn;
+        }
+        TopDownLazyFollow.gameCamera.steeringViewYOffset -= turnedOn ? cameraIncrease : -cameraIncrease;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (boatCenter == null)
+        {
+            boatCenter = BlockPrefabs.instance.playerRef.boat.transform;
+        }
+
         float kmElapsed = unityToFakeMeterScale * (boatCenter.position.y - startingYValue);
-
         kilometerText.text = kmElapsed.ToString("F1");
-
-
     }
 }

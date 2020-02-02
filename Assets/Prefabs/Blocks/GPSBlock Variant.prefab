@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -22}
+  m_AnchoredPosition: {x: 0, y: -23.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &561844130
@@ -91,8 +91,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 27.63
-  m_fontSizeBase: 27.63
+  m_fontSize: 33.1
+  m_fontSizeBase: 33.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -167,7 +167,6 @@ GameObject:
   - component: {fileID: 675066984}
   - component: {fileID: 675066983}
   - component: {fileID: 675066982}
-  - component: {fileID: 675066986}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -184,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 675066981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.84586, y: 0.84586, z: 1.3294928}
+  m_LocalScale: {x: 0.91699684, y: 0.91699684, z: 1.4413031}
   m_Children:
   - {fileID: 751232819}
   m_Father: {fileID: 9156084495235889564}
@@ -250,30 +249,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &675066986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675066981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562b3fe231c1391498c6af700a8b55eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopsPlayerMovement: 0
-  maxHP: 0
-  hp: 0
-  isSafeToAttachTo: 1
-  mass: 1
-  visited: 0
-  matType: 0
-  resourceUIIconOffset: {x: 0, y: 0, z: 0}
-  wasRepaired: 0
-  kilometerText: {fileID: 0}
-  unityToFakeMeterScale: 1
-  boatCenter: {fileID: 0}
 --- !u!1 &751232818
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 26.5}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &917006956
@@ -466,8 +441,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 27.63
-  m_fontSizeBase: 27.63
+  m_fontSize: 33.1
+  m_fontSizeBase: 33.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -564,7 +539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 16.9}
+  m_AnchoredPosition: {x: 0, y: 17.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1944363390
@@ -593,7 +568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: _____
+  m_text: ____
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -621,8 +596,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 27.63
-  m_fontSizeBase: 27.63
+  m_fontSize: 33.1
+  m_fontSizeBase: 33.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -662,7 +637,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1944363389}
-    characterCount: 5
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -706,9 +681,9 @@ MonoBehaviour:
   matType: 0
   resourceUIIconOffset: {x: 0, y: 0, z: 0}
   wasRepaired: 0
-  kilometerText: {fileID: 0}
-  unityToFakeMeterScale: 1
-  boatCenter: {fileID: 0}
+  kilometerText: {fileID: 917006955}
+  unityToFakeMeterScale: 0.02
+  cameraIncrease: 5
 --- !u!1001 &425785261516579390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -719,12 +694,12 @@ PrefabInstance:
     - target: {fileID: 8860906097888058274, guid: 8916104075160574592d08e6dc80bc96,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1899999
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 8860906097888058274, guid: 8916104075160574592d08e6dc80bc96,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.211
+      value: 1.137
       objectReference: {fileID: 0}
     - target: {fileID: 8860906097888058274, guid: 8916104075160574592d08e6dc80bc96,
         type: 3}

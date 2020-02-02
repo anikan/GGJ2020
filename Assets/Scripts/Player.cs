@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private GameObject grabbedObject;
 
     [SerializeField]
-    private GameObject boat;
+    public GameObject boat;
 
     [SerializeField]
     private BlockManager manager;

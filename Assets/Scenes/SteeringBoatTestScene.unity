@@ -1692,7 +1692,7 @@ PrefabInstance:
     - target: {fileID: 3770832161264171937, guid: 86c3764308f3c164fbfdd0b80a45db7b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7381213
+      value: -4.221
       objectReference: {fileID: 0}
     - target: {fileID: 3770832161264171937, guid: 86c3764308f3c164fbfdd0b80a45db7b,
         type: 3}
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   boatTransform: {fileID: 1904979629}
   playerTransform: {fileID: 2077527472}
   playerViewYOffset: -10
-  steeringViewYOffset: -25
+  steeringViewYOffset: -15
   waterCameraStartingDepth: -50
   smoothTime: 0.2
   isFollowingPlayer: 1
@@ -2303,18 +2303,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904979629}
     m_Modifications:
-    - target: {fileID: 1062036591, guid: 1408cdc4eb7b7b74cbd9299bff12246c, type: 3}
-      propertyPath: boatCenter
-      value: 
-      objectReference: {fileID: 819987143}
-    - target: {fileID: 1062036591, guid: 1408cdc4eb7b7b74cbd9299bff12246c, type: 3}
-      propertyPath: kilometerText
-      value: 
-      objectReference: {fileID: 7908911916475201203}
-    - target: {fileID: 1062036591, guid: 1408cdc4eb7b7b74cbd9299bff12246c, type: 3}
-      propertyPath: unityToFakeMeterScale
-      value: 0.02
-      objectReference: {fileID: 0}
     - target: {fileID: 9156084495235889564, guid: 1408cdc4eb7b7b74cbd9299bff12246c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2375,18 +2363,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: GPSBlock
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 675066986, guid: 1408cdc4eb7b7b74cbd9299bff12246c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1408cdc4eb7b7b74cbd9299bff12246c, type: 3}
---- !u!114 &7908911916475201203 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 917006955, guid: 1408cdc4eb7b7b74cbd9299bff12246c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7908911916475201202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -54,7 +54,7 @@ public class BlockManager : MonoBehaviour
     {
         Vector2Int gridIndex = GetGridIndex(worldPosition);
         grid[gridIndex] = block;
-        block.transform.position = new Vector3(gridIndex.x, gridIndex.y, 0);
+        block.transform.position = this.transform.position + new Vector3(gridIndex.x, gridIndex.y, 0);
         block.transform.SetParent(this.transform);
         return true;
     }
@@ -69,7 +69,7 @@ public class BlockManager : MonoBehaviour
         {
             // Add it to the grid
             grid[gridIndex] = block;
-            block.transform.position = new Vector3(gridIndex.x, gridIndex.y, 0);
+            block.transform.position = this.transform.position + new Vector3(gridIndex.x, gridIndex.y, 0);
             block.transform.SetParent(this.transform);
             block.OnAttach(transform);
             return true;

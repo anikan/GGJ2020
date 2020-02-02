@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3770832161264171948}
   - component: {fileID: 1231006501}
   m_Layer: 0
-  m_Name: ShipPiece
+  m_Name: UndeployedBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,3 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrabbable: 1
+  blockPrefab: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
+    type: 3}

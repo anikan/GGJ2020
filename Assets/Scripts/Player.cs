@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private BlockManager manager;
 
+    public int money = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -96,7 +98,8 @@ public class Player : MonoBehaviour
                 {
                     if (manager.IsPositionAvailable(grabbedObject.transform.position))
                     {
-                        GameObject gameObj = Instantiate(BlockPrefabs.instance.blockPrefab);
+                        GameObject prefab = grabbedObject.GetComponent<UndeployedBlock>().blockPrefab;
+                        GameObject gameObj = Instantiate(prefab);
                         Block block = gameObj.GetComponent<Block>();
                         bool successful = manager.AddBlock(block, grabbedObject.transform.position);
                         if (!successful)

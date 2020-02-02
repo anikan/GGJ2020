@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UndeployedBlock : Interactable
 {
-    Block block;
+    public GameObject blockPrefab;
     // Start is called before the first frame update
     void Start()
     {

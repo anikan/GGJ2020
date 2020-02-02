@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3770573378392083875}
   - component: {fileID: 3770573378392083872}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +95,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   stoppingForce: 50
+  meshes:
+  - {fileID: 110610, guid: 75283e9ef15245c4aab126ec6525dd2a, type: 3}
+  - {fileID: 111430, guid: dc8f0d303746c2a4b89ee60884906304, type: 3}
+  - {fileID: 128044, guid: 85f4229977c9ee247bc4425710c5b0c4, type: 3}
+  - {fileID: 185300, guid: 105b83a46d287294bbe7892a1e1f2ea3, type: 3}
+  - {fileID: 108756, guid: 2d521608fcf07c346b5e2ed4049aa717, type: 3}
 --- !u!61 &3770573378392083872
 BoxCollider2D:
   m_ObjectHideFlags: 0

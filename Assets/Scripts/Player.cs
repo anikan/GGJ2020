@@ -102,8 +102,11 @@ public class Player : MonoBehaviour
                         currentlyUsingInteractable.OnStopUsing(this);
                     }
 
-                    currentlyUsingInteractable = zoneComponent.activeInteractableObject;
-                    currentlyUsingInteractable.OnUse(this);
+                    if (interactableObject.stopsPlayerMovement)
+                    {
+                        currentlyUsingInteractable = zoneComponent.activeInteractableObject;
+                    }
+                    interactableObject.OnUse(this);
                 }
                 else if (currentlyUsingInteractable)
                 {

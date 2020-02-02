@@ -25,7 +25,10 @@ public class PaddleBoat : Boat
         {
             float angle = paddleRotateSpeed * Time.deltaTime;
             RotatePaddleByDegrees(leftPaddle, angle);
-            ApplyForwardForce(leftTip.transform.up, leftTip.transform.position);
+            if (currentLeftRotation < maxPaddleAngle - 1.0f)
+            {
+                ApplyForwardForce(leftTip.transform.up, leftTip.transform.position);
+            }
         }
         else
         {
@@ -37,7 +40,10 @@ public class PaddleBoat : Boat
         {
             float angle = -paddleRotateSpeed * Time.deltaTime;
             RotatePaddleByDegrees(rightPaddle, angle);
-            ApplyForwardForce(rightTip.transform.up, rightTip.transform.position);
+            if (currentRightRotation > -maxPaddleAngle + 1.0f)
+            {
+                ApplyForwardForce(rightTip.transform.up, rightTip.transform.position);
+            }
         }
         else
         {

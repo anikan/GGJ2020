@@ -9,10 +9,9 @@ public class Boat : MonoBehaviour
 
     public float maxVelocity = 50.0f;
     public float forwardForce = 1.0f;
-    public float sideForce = 2.0f;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         if (!controllingRigidbody)
         {
@@ -32,20 +31,6 @@ public class Boat : MonoBehaviour
     protected void ApplyForwardForce(Vector3 dir, Vector3 pos)
     {
         controllingRigidbody.AddForceAtPosition(dir * forwardForce, pos);
-        PreventSliding();
-    }
-
-    protected void TurnLeft()
-    {
-        controllingRigidbody.angularVelocity = 0.0f;
-        controllingRigidbody.AddTorque(sideForce, ForceMode2D.Impulse);
-        PreventSliding();
-    }
-
-    protected void TurnRight()
-    {
-        controllingRigidbody.angularVelocity = 0.0f;
-        controllingRigidbody.AddTorque(-sideForce, ForceMode2D.Impulse);
         PreventSliding();
     }
 

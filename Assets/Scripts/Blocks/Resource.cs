@@ -26,6 +26,11 @@ public class Resource : Interactable
     {
     }
 
+    public override void OnStopUsing(Player player)
+    {
+        
+    }
+
     public void SetResourceType(ResourceType type)
     {
         this.type = type;

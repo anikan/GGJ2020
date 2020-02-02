@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float maxSpeed = 5.0f;
     public float accelerationSpeed = 1.0f;
+    public float drag = 0.5f;
 
     [SerializeField]
     private GameObject interactZone;
@@ -25,6 +26,11 @@ public class Player : MonoBehaviour
 
     public int money = 0;
 
+    private Interactable currentlyUsingInteractable;
+
+    private Vector2 velocity;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,60 +40,46 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool inputPressed = false;
-        if (Input.GetAxis("Vertical") != 0)
+        if (!currentlyUsingInteractable || !currentlyUsingInteractable.stopsPlayerMovement)
         {
-            inputPressed = true;
-            rigidbody.AddForce(new Vector2(0, Input.GetAxis("Vertical")), ForceMode2D.Impulse);
-
-            if (Input.GetAxis("Vertical") > 0.0)
-            {
-                interactZone.transform.localPosition = new Vector3(0, interactZoneOffset, 0);
-            }
-
-            else
-            {
-                interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
-            }
-        }
-
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            inputPressed = true;
-            rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal"), 0), ForceMode2D.Impulse);
-
-            if (Input.GetAxis("Horizontal") > 0.0)
-            {
-                interactZone.transform.localPosition = new Vector3(interactZoneOffset, 0, 0);
-            }
-
-            else
-            {
-                interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
-            }
+            HandleMovement();
         }
 
         //Cap at max velocity.
+        /*
         if (rigidbody.velocity.magnitude > maxSpeed)
         {
             rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
         }
+        */
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             //If not holding anything and there's an interactable object in front, use it.
-            if (!grabbedObject && interactZone.GetComponent<InteractZone>().activeInteractableObject)
+            if (!grabbedObject && interactZone.TryGetComponent<InteractZone>(out InteractZone zoneComponent))
             {
-                
-                Interactable interactableObject = interactZone.GetComponent<InteractZone>().activeInteractableObject;
-
-                //If the object is grabbable, set it's parent to the interact zone and reset its position.
-                if (interactableObject.isGrabbable)
+                Interactable interactableObject = zoneComponent.activeInteractableObject;
+                if (interactableObject && (!currentlyUsingInteractable || currentlyUsingInteractable != interactableObject))
                 {
-                    GrabObject(interactableObject.gameObject);
-                }
+                    //If the object is grabbable, set it's parent to the interact zone and reset its position.
+                    if (interactableObject.isGrabbable)
+                    {
+                        GrabObject(interactableObject.gameObject);
+                    }
 
-                interactZone.GetComponent<InteractZone>().activeInteractableObject.OnUse(this);
+                    if (currentlyUsingInteractable)
+                    {
+                        currentlyUsingInteractable.OnStopUsing(this);
+                    }
+
+                    currentlyUsingInteractable = zoneComponent.activeInteractableObject;
+                    currentlyUsingInteractable.OnUse(this);
+                }
+                else if (currentlyUsingInteractable)
+                {
+                    currentlyUsingInteractable.OnStopUsing(this);
+                    currentlyUsingInteractable = null;
+                }
             }
 
             //If holding something, let go.
@@ -130,6 +122,80 @@ public class Player : MonoBehaviour
 
                 LetGoOfObject();
             }
+        }
+    }
+
+    private void HandleMovement()
+    {
+        float changeInVelocity = accelerationSpeed * Time.deltaTime;
+
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            // rigidbody.AddForce(new Vector2(0, Input.GetAxis("Vertical")), ForceMode2D.Impulse);
+            if (Input.GetAxis("Vertical") > 0.1)
+            {
+                velocity.y = Mathf.Clamp(velocity.y + changeInVelocity, -maxSpeed, maxSpeed);
+                interactZone.transform.localPosition = new Vector3(0, interactZoneOffset, 0);
+            }
+
+            else if (Input.GetAxis("Vertical") < -0.1f)
+            {
+                velocity.y = Mathf.Clamp(velocity.y - changeInVelocity, -maxSpeed, maxSpeed);
+                interactZone.transform.localPosition = new Vector3(0, -interactZoneOffset, 0);
+            }
+            else
+            {
+                {
+                    if (velocity.x > 0)
+                    {
+                        velocity.x = Mathf.Clamp(velocity.x - changeInVelocity, 0.0f, velocity.x);
+                    }
+                    else if (velocity.x < 0)
+                    {
+                        velocity.x = Mathf.Clamp(velocity.x + changeInVelocity, velocity.x, 0.0f);
+                    }
+                }
+            }
+        }
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            //rigidbody.AddForce(new Vector2(Input.GetAxis("Horizontal"), 0), ForceMode2D.Impulse);
+
+            if (Input.GetAxis("Horizontal") > 0.1f)
+            {
+                velocity.x = Mathf.Clamp(velocity.x + changeInVelocity, -maxSpeed, maxSpeed);
+                interactZone.transform.localPosition = new Vector3(interactZoneOffset, 0, 0);
+            }
+
+            else if (Input.GetAxis("Horizontal") < -0.1f)
+            {
+                velocity.x = Mathf.Clamp(velocity.x - changeInVelocity, -maxSpeed, maxSpeed);
+                interactZone.transform.localPosition = new Vector3(-interactZoneOffset, 0, 0);
+            }
+        }
+        else
+        {
+            if (velocity.x > 0)
+            {
+                velocity.x = Mathf.Clamp(velocity.x - changeInVelocity, 0.0f, velocity.x);
+            }
+            else if (velocity.x < 0)
+            {
+                velocity.x = Mathf.Clamp(velocity.x + changeInVelocity, velocity.x, 0.0f);
+            }
+        }
+
+        velocity += -velocity * drag * Time.deltaTime;
+
+    }
+
+    private void FixedUpdate()
+    {
+
+        if (velocity != Vector2.zero)
+        {
+            transform.position += new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime);
         }
     }
 

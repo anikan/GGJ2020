@@ -26,4 +26,9 @@ public class Dispenser : Interactable
 
         player.GrabObject(resource);
     }
+
+    public override void OnStopUsing(Player player)
+    {
+        
+    }
 }

@@ -21,4 +21,8 @@ public class UndeployedBlock : Interactable
     {
 
     }
+    public override void OnStopUsing(Player player)
+    {
+       
+    }
 }

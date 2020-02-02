@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoatPart : Block
+public abstract class BoatPart : Block
 {
     [Space(10)]
     [Header("Boat Config")]
@@ -12,6 +12,22 @@ public class BoatPart : Block
     public float maxVelocity = 50.0f;
     public float forwardForce = 1.0f;
 
+    private bool activelyBeingUsed;
+
+    public override void OnUse(Player player)
+    {
+        base.OnUse(player);
+        activelyBeingUsed = true;
+        TopDownLazyFollow.gameCamera.ZoomToBoatView();
+    }
+
+    public override void OnStopUsing(Player player)
+    {
+        base.OnStopUsing(player);
+        activelyBeingUsed = false;
+        TopDownLazyFollow.gameCamera.ZoomToPlayerView();
+    }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -19,6 +35,7 @@ public class BoatPart : Block
         {
             controllingRigidbody = GetComponentInChildren<Rigidbody2D>();
         }
+        stopsPlayerMovement = true;
     }
 
     public override void OnAttach(Transform blockParent)
@@ -29,7 +46,15 @@ public class BoatPart : Block
 
     protected virtual void Update()
     {
+        if (activelyBeingUsed)
+        {
+            CheckInputsAndSteer();
+        }
     }
+
+
+    protected abstract void CheckInputsAndSteer();
+   
 
     protected virtual void FixedUpdate()
     {

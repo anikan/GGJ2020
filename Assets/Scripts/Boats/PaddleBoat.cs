@@ -17,10 +17,8 @@ public class PaddleBoat : BoatPart
     private Coroutine leftRoutine;
     private Coroutine rightRoutine;
 
-    protected override void Update()
+    protected override void CheckInputsAndSteer()
     {
-        base.Update();
-
         if (Input.GetKey(KeyCode.A))
         {
             float angle = paddleRotateSpeed * Time.deltaTime;

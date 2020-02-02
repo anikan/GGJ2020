@@ -14,10 +14,8 @@ public class Motorboat : BoatPart
     public float maxParticleLifetime = 0.3f;
     public float particleRampSpeed = 0.2f;
 
-    // Update is called once per frame
-    protected override void Update()
+    protected override void CheckInputsAndSteer()
     {
-        base.Update();
         if (Input.GetKey(KeyCode.W))
         {
             ApplyForwardForce(-motorModelTransform.up, motorModelTransform.position);

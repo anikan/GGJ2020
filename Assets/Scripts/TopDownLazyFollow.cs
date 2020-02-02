@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TopDownLazyFollow : MonoBehaviour
 {
+    public static TopDownLazyFollow gameCamera;
+
     public Transform boatTransform;
     public Transform playerTransform;
     public float playerViewYOffset = -10.0f;
@@ -14,6 +16,11 @@ public class TopDownLazyFollow : MonoBehaviour
     private Vector3 velocity;
 
     public bool isFollowingPlayer = true;
+
+    private void Awake()
+    {
+        gameCamera = this;
+    }
 
     // Start is called before the first frame update
     void Start()

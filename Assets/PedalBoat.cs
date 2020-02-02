@@ -14,15 +14,13 @@ public class PedalBoat : BoatPart
         regularZValue = rightPedal.position.z;
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    protected override void CheckInputsAndSteer()
     {
-        base.Update();
         if (Input.GetKeyDown(KeyCode.A))
         {
             ApplyForwardForce(leftPedal.transform.up + -leftPedal.transform.right, leftPedal.transform.position);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             ApplyForwardForce(rightPedal.transform.up + rightPedal.transform.right, rightPedal.transform.position);
@@ -47,5 +45,6 @@ public class PedalBoat : BoatPart
             rightPedal.position = new Vector3(rightPedal.position.x, rightPedal.transform.position.y, regularZValue);
 
         }
+
     }
 }

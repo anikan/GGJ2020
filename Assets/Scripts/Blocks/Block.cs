@@ -30,6 +30,11 @@ public class Block : Interactable
         // TO FILL
     }
 
+    public override void OnStopUsing(Player player)
+    {
+        // TO FILL
+    }
+
     public void OnHit(int damage)
     {
         hp -= damage;

@@ -693,28 +693,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: boat
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: maxSpeed
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: accelerationSpeed
       value: 7.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: manager
       value: 
       objectReference: {fileID: 1904979628}
-    - target: {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: blockPrefab
       value: 
       objectReference: {fileID: 8860906097888058275, guid: 59ad12d1405348c4bb8dcd92ee147ea7,
@@ -780,7 +775,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1573681351524975777, guid: 13f99686d45ec614ab0607391a4d659e, type: 3}
+    - {fileID: 1573681351524975802, guid: 13f99686d45ec614ab0607391a4d659e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 13f99686d45ec614ab0607391a4d659e, type: 3}
 --- !u!4 &2077527472 stripped
 Transform:

@@ -188,11 +188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57268937367fa0c4bb63c2b99903719b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  accelerationSpeed: 5
+  maxSpeed: 15
+  accelerationSpeed: 7.5
+  drag: 0.5
   interactZone: {fileID: 1573681350797804616}
   interactZoneOffset: 1
   boat: {fileID: 0}
+  manager: {fileID: 0}
+  money: 0
 --- !u!50 &1573681351524975802
 Rigidbody2D:
   serializedVersion: 4
@@ -213,7 +216,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1573681351524975806
 CircleCollider2D:
   m_ObjectHideFlags: 0

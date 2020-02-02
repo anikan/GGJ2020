@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BoatPart : Block
 {
+    [Space(10)]
+    [Header("Boat Config")]
+
     public Rigidbody2D controllingRigidbody;
 
     public float maxVelocity = 50.0f;
@@ -16,6 +19,12 @@ public class BoatPart : Block
         {
             controllingRigidbody = GetComponentInChildren<Rigidbody2D>();
         }
+    }
+
+    public override void OnAttach(Transform blockParent)
+    {
+        base.OnAttach(blockParent);
+        controllingRigidbody = blockParent.GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Update()

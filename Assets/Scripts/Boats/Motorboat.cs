@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Motorboat : BoatPart
 {
+    public Transform motorModelTransform;
+
     public float maxMotorAngle = 45.0f;
     public float motorRotateSpeed = 15.0f;
 
@@ -18,7 +20,7 @@ public class Motorboat : BoatPart
         base.Update();
         if (Input.GetKey(KeyCode.W))
         {
-            ApplyForwardForce(-transform.up, transform.position);
+            ApplyForwardForce(-motorModelTransform.up, motorModelTransform.position);
             ParticleSystem.MainModule particleModule = motorParticleSystem.main;
             float newLifetime = particleModule.startLifetime.constant + particleRampSpeed * Time.deltaTime;
             particleModule.startLifetime = new ParticleSystem.MinMaxCurve(Mathf.Clamp(newLifetime, 0.0f, maxParticleLifetime));
@@ -49,7 +51,7 @@ public class Motorboat : BoatPart
         {
             degrees = newRotation < 0 ? -maxMotorAngle - currentRotationAngle : maxMotorAngle - currentRotationAngle;
         }
-        transform.Rotate(Vector3.forward, degrees);
+        motorModelTransform.Rotate(Vector3.forward, degrees);
         currentRotationAngle += degrees;
     }
 }

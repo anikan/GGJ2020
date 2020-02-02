@@ -42,6 +42,17 @@ public class Motorboat : BoatPart
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        ParticleSystem.MainModule particleModule = motorParticleSystem.main;
+
+        int sign = activelyBeingUsed ? 1 : -1;
+
+        float newLifetime = particleModule.startLifetime.constant + (sign * particleRampSpeed * Time.deltaTime);
+        particleModule.startLifetime = new ParticleSystem.MinMaxCurve(Mathf.Clamp(newLifetime, 0.0f, maxParticleLifetime));
+    }
+
     private void RotateMotorByDegrees(float degrees)
     {
         float newRotation = currentRotationAngle + degrees;

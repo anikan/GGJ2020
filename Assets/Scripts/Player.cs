@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
                 if (grabbableObject)
                 {
                     GrabObject(grabbableObject.gameObject);
+                    return;
                 }
 
                 Interactable interactableObject = zoneComponent.activeInteractableObject;

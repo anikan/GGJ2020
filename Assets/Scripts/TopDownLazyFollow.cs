@@ -40,8 +40,13 @@ public class TopDownLazyFollow : MonoBehaviour
         Vector3 posDelta = newPos - transform.position;
 
         transform.position = newPos;
-        Vector3 waterCameraPosDelta = new Vector3(posDelta.x, -posDelta.z, 0.0f);
-        waterCamera.transform.position += waterCameraPosDelta;
+
+        if (!isFollowingPlayer)
+        {
+            Vector3 waterCameraPosDelta = new Vector3(posDelta.x, -posDelta.z, posDelta.y);
+            waterCamera.transform.position += waterCameraPosDelta;
+        }
+
     }
 
     public void ZoomToPlayerView()

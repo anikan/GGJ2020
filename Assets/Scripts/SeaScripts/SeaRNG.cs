@@ -17,10 +17,15 @@ public class SeaRNG : MonoBehaviour
 
     List<RNGEntry> currentTable;
 
+    public float timeToSpawn;
+
+    public bool gameActive = true;
+
     // Start is called before the first frame update
     void Start()
     {
         currentTable = startSpawnTable;
+        StartCoroutine(SpawnItem());
     }
 
     // Update is called once per frame
@@ -43,7 +48,7 @@ public class SeaRNG : MonoBehaviour
             {
                 GameObject spawnedObject = GameObject.Instantiate<GameObject>(entry.objectToSpawn);
 
-                spawnedObject.transform.position = new Vector3(GetRandomHorizontalPosition(), BlockPrefabs.instance.playerRef.transform.position.y);
+                spawnedObject.transform.position = new Vector3(GetRandomHorizontalPosition(), BlockPrefabs.instance.playerRef.transform.position.y + 20 + Random.Range(-10.0f, 10.0f));
             }
         }
     }
@@ -55,6 +60,12 @@ public class SeaRNG : MonoBehaviour
 
     IEnumerator SpawnItem()
     {
-        yield return null;
+        while (gameActive)
+        {
+            SpawnObject();
+            yield return new WaitForSeconds(timeToSpawn);
+
+        }
+
     }
 }

@@ -16,6 +16,9 @@ public class BlockManager : MonoBehaviour
         foreach(Block block in blocks)
         {
             SudoAddBlock(block, block.transform.position);
+
+            block.OnAttach(this.transform);
+
         }
     }
 
@@ -72,6 +75,7 @@ public class BlockManager : MonoBehaviour
             block.transform.position = this.transform.position + new Vector3(gridIndex.x, gridIndex.y, 0);
             block.transform.SetParent(this.transform);
             block.OnAttach(transform);
+
             return true;
         }
         return false;

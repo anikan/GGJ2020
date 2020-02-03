@@ -48,7 +48,7 @@ public class SeaRNG : MonoBehaviour
         {
             rangeSoFar += entry.probability;
 
-            if (randomVal > rangeSoFar)
+            if (rangeSoFar > randomVal)
             {
                 GameObject spawnedObject = GameObject.Instantiate<GameObject>(entry.objectToSpawn);
 

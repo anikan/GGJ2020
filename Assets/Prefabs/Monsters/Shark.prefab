@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3770832161264171949
+--- !u!1 &7199910757404042957
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3770832161264171937}
-  - component: {fileID: 3770832161264171938}
-  - component: {fileID: 3770832161264171939}
-  - component: {fileID: 3770832161264171948}
-  - component: {fileID: 1231006501}
+  - component: {fileID: 7199910757404043059}
+  - component: {fileID: 7199910757404043058}
+  - component: {fileID: 7199910757404043057}
+  - component: {fileID: 7199910757404043056}
+  - component: {fileID: 7199910757404042959}
+  - component: {fileID: 7199910757404042958}
   m_Layer: 0
-  m_Name: UndeployedSail
+  m_Name: Shark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3770832161264171937
+--- !u!4 &7199910757404043059
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770832161264171949}
+  m_GameObject: {fileID: 7199910757404042957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3894396, y: 3.711, z: 4.3820667}
-  m_LocalScale: {x: 0.68431, y: 0.40879, z: 1}
+  m_LocalPosition: {x: 4.37, y: 8.5, z: -2.6804645}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3770832161264171938
+--- !u!33 &7199910757404043058
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770832161264171949}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3770832161264171939
+  m_GameObject: {fileID: 7199910757404042957}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7199910757404043057
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770832161264171949}
+  m_GameObject: {fileID: 7199910757404042957}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -81,44 +82,59 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!61 &3770832161264171948
-BoxCollider2D:
+--- !u!50 &7199910757404043056
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770832161264171949}
+  m_GameObject: {fileID: 7199910757404042957}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &7199910757404042959
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199910757404042957}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000005960464, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.9999999}
-  m_EdgeRadius: 0
---- !u!114 &1231006501
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0
+--- !u!114 &7199910757404042958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770832161264171949}
+  m_GameObject: {fileID: 7199910757404042957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911374da83884b14b905bf249de444bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f2752837518b024199c26e259c76388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrabbable: 1
-  blockPrefab: {fileID: 2018919408691373470, guid: 65b7b9f0fd3a727458475927f239a057,
-    type: 3}
+  strength: 10
+  destroyOnHit: 0
+  minimumImpulse: 0
+  maxHp: 100
+  stoppingForce: 20
+  target: {fileID: 0}
+  sharkSpeed: 3

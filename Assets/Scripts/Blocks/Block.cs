@@ -8,6 +8,7 @@ public class Block : Interactable
     public int maxHP; // After this HP hits, the object gets disconnected from the ship and becomes a resource
     public int hp; // current HP
 
+    public bool destroyable = true;
     public bool isSafeToAttachTo = true;
     public float mass = 1;
     public bool visited; // for Block Manager use only
@@ -38,6 +39,8 @@ public class Block : Interactable
 
     public void OnHit(int damage)
     {
+        if (!destroyable) return;
+
         hp -= damage;
 
         if (hp <= 0)

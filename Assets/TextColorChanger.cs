@@ -11,16 +11,26 @@ public class TextColorChanger : MonoBehaviour
     [RangeAttribute(0.01f, 2.0f)]
     public float changeDuration = 0.5f;
 
+    private Coroutine changeRoutine;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ChangeToRandomColor());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OnEnable()
+    {
+        if (changeRoutine != null)
+        {
+            StopCoroutine(changeRoutine);
+        }
+        changeRoutine = StartCoroutine(ChangeToRandomColor());
     }
 
     public IEnumerator ChangeToRandomColor()
@@ -35,6 +45,6 @@ public class TextColorChanger : MonoBehaviour
             yield return null;
         }
         textMesh.color = endColor;
-        StartCoroutine(ChangeToRandomColor());
+        changeRoutine = StartCoroutine(ChangeToRandomColor());
     }
 }

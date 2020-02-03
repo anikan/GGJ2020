@@ -38,5 +38,15 @@ public class GPSBlock : Block
         int goal = Mathf.FloorToInt(TopDownLazyFollow.gameCamera.winMeters);
 
         goalText.text = string.Format("{0}km", goal);
+
+        if (this.hp <= 0.0f && turnedOn)
+        {
+            turnedOn = false;
+            foreach (TextMeshProUGUI textMesh in GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                textMesh.enabled = turnedOn;
+            }
+            TopDownLazyFollow.gameCamera.steeringViewYOffset -= turnedOn ? cameraIncrease : -cameraIncrease;
+        }
     }
 }

@@ -7,11 +7,7 @@ using TMPro;
 public class GPSBlock : Block
 {
     public TextMeshProUGUI kilometerText;
-    private const float unityToFakeMeterScale = 0.01f;
-
-    public static float startingYValue = -1000.0f;
-
-    private Transform boatCenter;
+    public TextMeshProUGUI goalText;
     public float cameraIncrease = 5.0f;
 
     private bool turnedOn = true;
@@ -19,15 +15,6 @@ public class GPSBlock : Block
     // Start is called before the first frame update
     void Start()
     {
-        if (boatCenter == null)
-        {
-            boatCenter = BlockPrefabs.instance.playerRef.boat.transform;
-        }
-        if (startingYValue < -100.0f)
-        {
-            startingYValue = boatCenter.position.y;
-        }
-
         TopDownLazyFollow.gameCamera.steeringViewYOffset -= cameraIncrease;
     }
 
@@ -45,12 +32,11 @@ public class GPSBlock : Block
     // Update is called once per frame
     void Update()
     {
-        if (boatCenter == null)
-        {
-            boatCenter = BlockPrefabs.instance.playerRef.boat.transform;
-        }
-
-        float kmElapsed = unityToFakeMeterScale * (boatCenter.position.y - startingYValue);
+        float kmElapsed = TopDownLazyFollow.gameCamera.GetDistanceTraveled();
         kilometerText.text = kmElapsed.ToString("F1");
+
+        int goal = Mathf.FloorToInt(TopDownLazyFollow.gameCamera.winMeters);
+
+        goalText.text = string.Format("{0}km", goal);
     }
 }

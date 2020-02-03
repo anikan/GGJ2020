@@ -51,7 +51,7 @@ public override void OnUse(Player player)
 
     protected virtual void Update()
     {
-        if (SteeringBlock.activelySteering || activelyBeingUsed)
+        if (SteeringBlock.instance.activelySteering || activelyBeingUsed)
         {
             CheckInputsAndSteer();
         }

@@ -1765,7 +1765,7 @@ Transform:
   m_Children:
   - {fileID: 1460163389}
   m_Father: {fileID: 1699601408}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1193338002
 GameObject:
@@ -3378,7 +3378,7 @@ MonoBehaviour:
   steeringViewYOffset: -10
   waterCameraStartingDepth: -50
   unityToFakeMeterScale: 0.01
-  winMeters: 1
+  winMeters: 0.1
   winConditionParent: {fileID: 815825410}
   totalTimeMesh: {fileID: 1193338005}
   totalDistanceMesh: {fileID: 902229231}

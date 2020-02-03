@@ -64,7 +64,6 @@ public class Block : Interactable
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.gameObject.name);
         Damaging damageable = collider.gameObject.GetComponent<Damaging>();
         if (damageable)
         {

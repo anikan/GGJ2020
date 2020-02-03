@@ -1662,7 +1662,12 @@ PrefabInstance:
     - target: {fileID: 4050249445684282529, guid: 0448fb15fe846e84d8cc333266df626c,
         type: 3}
       propertyPath: winMeters
-      value: 0
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050249445684282529, guid: 0448fb15fe846e84d8cc333266df626c,
+        type: 3}
+      propertyPath: unityToFakeMeterScale
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4050249445684282531, guid: 0448fb15fe846e84d8cc333266df626c,
         type: 3}

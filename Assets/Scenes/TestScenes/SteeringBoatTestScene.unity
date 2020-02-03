@@ -270,6 +270,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 673807035, guid: b323dc73ddf04334e9508cf82ec90cf4, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524562173, guid: b323dc73ddf04334e9508cf82ec90cf4, type: 3}
+      propertyPath: m_fontStyle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348571507982037859, guid: b323dc73ddf04334e9508cf82ec90cf4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3348571508422744898, guid: b323dc73ddf04334e9508cf82ec90cf4,
         type: 3}
       propertyPath: m_LocalPosition.x

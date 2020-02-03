@@ -56,6 +56,8 @@ public class SeaRNG : MonoBehaviour
 
                 spawnedObject.transform.position = playerPosition + GetRandomRelativePosition();
                 spawnedObject.transform.parent = this.transform;
+
+                return;
             }
         }
     }
@@ -70,10 +72,16 @@ public class SeaRNG : MonoBehaviour
     {
         while (gameActive)
         {
+            Debug.Log("SPAWNING");
             SpawnObject();
-            yield return new WaitForSeconds(timeToSpawn);
 
+            float speed = Mathf.Max(.1f, BlockPrefabs.instance.playerRef.boat.GetComponent<Rigidbody2D>().velocity.magnitude);
+
+            float minWaitTime = .1f;
+
+            float waitTime = Mathf.Max(minWaitTime, timeToSpawn / speed);
+
+            yield return new WaitForSeconds(waitTime);
         }
-
     }
 }

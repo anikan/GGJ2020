@@ -5,10 +5,10 @@ using UnityEngine;
 /*
  * The Boulder is a dangerous obstacle. It doesn't move, but it will slice through your ship
  */
- [RequireComponent(typeof(BoxCollider2D))]
- // [RequireComponent(typeof(MeshRenderer))]
- // [RequireComponent(typeof(MeshFilter))]
-public class Boulder : Enemy
+[RequireComponent(typeof(BoxCollider2D))]
+// [RequireComponent(typeof(MeshRenderer))]
+// [RequireComponent(typeof(MeshFilter))]
+public class Boulder : Damaging
 {
     public List<GameObject> meshes = null;
     private GameObject boulder = null;
@@ -38,24 +38,5 @@ public class Boulder : Enemy
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         collider.offset = new Vector2(meshBounds.center.x, meshBounds.center.z);
         collider.size = new Vector2(meshBounds.extents.x, meshBounds.extents.z) * 2;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Get reference to Box Manager
-        BlockManager manager = collision.gameObject.GetComponentInParent<BlockManager>();
-
-        if(manager != null)
-        {
-            // Apply a force to the Box Manager's Rigidbody to slow down the whole ship
-            var parentRb = collision.gameObject.GetComponentInParent<Rigidbody2D>();
-            Vector2 appliedForce = Vector3.Normalize(parentRb.velocity) * stoppingForce;
-            parentRb.AddForce(appliedForce);
-
-            // Get the world position of the collided box and RemoveBlock
-            var victimPos = collision.transform.position;
-            var block = manager.RemoveBlock(victimPos);
-
-        }
     }
 }

@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099efd3f27072fe498cb2da9518abdf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 5
+  destroyOnHit: 0
   maxHp: 10
   stoppingForce: 50
   meshes:

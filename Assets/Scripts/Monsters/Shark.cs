@@ -16,7 +16,11 @@ public class Shark : Damaging
     void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
         rb.velocity = new Vector2(sharkSpeed, 0);
+        target = GameObject.FindObjectOfType<BlockManager>().transform;
+
+        Debug.Assert(target != null);
     }
 
     // Shark Behavior:

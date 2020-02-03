@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3770832161264171949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.3894396, y: 3.711, z: 4.3820667}
-  m_LocalScale: {x: 0.68431, y: 0.40879, z: 1}
+  m_LocalScale: {x: 0.55456555, y: 0.30248177, z: 0.060811}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fe75c7ddb3debe42ba12de6390cc05c, type: 2}
+  - {fileID: 2100000, guid: 0f3edb0c83b1f4a479843f00cfd67ccf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,6 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911374da83884b14b905bf249de444bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrabbable: 1
-  stopsPlayerMovement: 0
   blockPrefab: {fileID: 0}

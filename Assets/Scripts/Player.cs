@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
 
     public GameObject newBlockIndicator;
 
+    public Animator spriteAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,8 @@ public class Player : MonoBehaviour
 
         else
         {
+            spriteAnimator.SetBool("isWalking", false);
+
             velocity = Vector2.zero;
         }
 
@@ -163,6 +167,8 @@ public class Player : MonoBehaviour
         float horizontalChangeInVelocity = Input.GetAxis("Horizontal") * accelerationSpeed * Time.deltaTime;
         float verticalChangeInVelocity = Input.GetAxis("Vertical") * accelerationSpeed * Time.deltaTime;
 
+        spriteAnimator.SetBool("isWalking", Mathf.Abs(horizontalChangeInVelocity) > .1f || Mathf.Abs(verticalChangeInVelocity) > .1f);
+
         if (Input.GetAxis("Vertical") != 0)
         {
             velocity.y = Mathf.Clamp(velocity.y + verticalChangeInVelocity, -maxSpeed, maxSpeed);
@@ -196,6 +202,16 @@ public class Player : MonoBehaviour
         velocity += -velocity * drag * Time.deltaTime;
 
         interactZone.transform.localPosition = facingDirection;
+
+        SetAnimationDirection(facingDirection);
+    }
+
+    private void SetAnimationDirection(Vector2 direction)
+    {
+        spriteAnimator.SetBool("isFacingLeft", direction.x < 0);
+        spriteAnimator.SetBool("isFacingRight", direction.x > 0);
+        spriteAnimator.SetBool("isFacingUp", direction.y > 0);
+        spriteAnimator.SetBool("isFacingDown", direction.y < 0);
     }
 
     private void FixedUpdate()

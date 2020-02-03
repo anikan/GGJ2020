@@ -132,6 +132,10 @@ public class BlockManager : MonoBehaviour
 
         if(playerGridIndex == gridIndex)
         {
+            // TEMPORARY: Assumes (0, 0) is steering wheel
+            player.transform.position = GetWorldPosition(new Vector2Int(0, 0));
+
+            /*
             // We know that the ship is a connected component, which means we can push the player to a neighboring block
             // After we grab the available neighbors, get their actual positions and find the one the player is closest to
             // Force the player to be on that position
@@ -155,6 +159,7 @@ public class BlockManager : MonoBehaviour
                     break;
                 }
             }
+            */
         }
 
         RemoveDisconnectedBlocks(player.transform.position);

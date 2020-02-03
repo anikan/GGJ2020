@@ -28,6 +28,9 @@ public class Shark : Damaging
     // When it collides, it bounces off the ship and tries to come back again
     void FixedUpdate()
     {
+        if (currHp <= 0)
+            Destroy(this);
+
         // Target velocity is something that's perpendicular to the circle
         Vector2 force = target.position - this.transform.position;
 

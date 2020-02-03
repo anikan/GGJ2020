@@ -21,7 +21,6 @@ public class Damaging : MonoBehaviour
     {
         // For colliding with blocks
         {
-            Debug.Log("Collided!");
             // Get reference to Box Manager
             BlockManager manager = collision.gameObject.GetComponentInParent<BlockManager>();
 
@@ -40,7 +39,6 @@ public class Damaging : MonoBehaviour
                     Rigidbody2D shipRb = collision.gameObject.GetComponentInParent<Rigidbody2D>();
                     // Calculate the damage
                     float damage = Mathf.Max((shipRb.velocity.magnitude * shipRb.mass) - minimumImpulse, 0) * strength;
-                    Debug.Log("Damage:" + damage);
                     victim.OnHit((int)damage);
                 }
 

@@ -52,6 +52,8 @@ public class Shark : Damaging
         else
             bouncing = 1.0f;
 
+        this.currHp -= 10;
+
         Vector2 appliedForce = Vector3.Normalize(this.rb.velocity) * -30 * stoppingForce;
         rb.AddForce(appliedForce);
     }

@@ -21,10 +21,14 @@ public class SeaRNG : MonoBehaviour
 
     public bool gameActive = true;
 
+    Camera mainCam;
+
     // Start is called before the first frame update
     void Start()
     {
         currentTable = startSpawnTable;
+        mainCam = Camera.main;
+
         StartCoroutine(SpawnItem());
     }
 
@@ -51,13 +55,15 @@ public class SeaRNG : MonoBehaviour
                 Vector3 playerPosition = BlockPrefabs.instance.playerRef.transform.position;
 
                 spawnedObject.transform.position = playerPosition + GetRandomRelativePosition();
+                spawnedObject.transform.parent = this.transform;
             }
         }
     }
 
     Vector3 GetRandomRelativePosition()
     {
-        return new Vector3(Random.Range(-100.0f, 100.0f), 20.0f + Random.Range(-10.0f, 10.0f));
+        Vector3 topBoundaryPoint = mainCam.ViewportToWorldPoint(new Vector3(0.5f, 0.0f, mainCam.transform.position.z));
+        return new Vector3(Random.Range(-100.0f, 100.0f), topBoundaryPoint.y + Random.Range(10.0f, 20.0f));
     }
 
     IEnumerator SpawnItem()

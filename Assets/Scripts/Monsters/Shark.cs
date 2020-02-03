@@ -15,6 +15,7 @@ public class Shark : Damaging
     // Start is called before the first frame update
     void Awake()
     {
+        base.Awake();
         rb = this.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         rb.velocity = new Vector2(sharkSpeed, 0);
@@ -29,7 +30,13 @@ public class Shark : Damaging
     void FixedUpdate()
     {
         if (currHp <= 0)
+        {
+            for (int i = 0; i < transform.childCount; ++i)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
             Destroy(this);
+        }
 
         // Target velocity is something that's perpendicular to the circle
         Vector2 force = target.position - this.transform.position;
@@ -44,6 +51,8 @@ public class Shark : Damaging
         float forceMagnitude = (sharkSpeed * sharkSpeed) / newRadius;
 
         rb.AddForce(force * forceMagnitude);
+
+        this.transform.rotation = Quaternion.LookRotation(rb.velocity, new Vector3(0, 0, -1));
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

@@ -17,6 +17,11 @@ public class Damaging : MonoBehaviour
     [SerializeField]
     protected float stoppingForce; // the magnitude the force to apply to the ship on collision
 
+    protected void Awake()
+    {
+        currHp = maxHp;
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // For colliding with blocks

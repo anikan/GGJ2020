@@ -42,6 +42,11 @@ public class TopDownLazyFollow : MonoBehaviour
     {
         startingYValue = boatTransform.position.y;
         prevBoatPos = boatTransform.position;
+        if (!playerTransform || !boatTransform)
+        {
+            playerTransform = BlockPrefabs.instance.playerRef.transform;
+            boatTransform = BlockPrefabs.instance.playerRef.boat.transform;
+        }
     }
 
     private void Update()

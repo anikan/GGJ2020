@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour
     {
         if (!instance)
         {
-            SceneController.DontDestroyOnLoad(gameObject);
+            //SceneController.DontDestroyOnLoad(gameObject);
             instance = this;
         }
         else

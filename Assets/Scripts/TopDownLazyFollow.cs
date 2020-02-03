@@ -40,13 +40,14 @@ public class TopDownLazyFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startingYValue = boatTransform.position.y;
-        prevBoatPos = boatTransform.position;
         if (!playerTransform || !boatTransform)
         {
             playerTransform = BlockPrefabs.instance.playerRef.transform;
             boatTransform = BlockPrefabs.instance.playerRef.boat.transform;
         }
+        startingYValue = boatTransform.position.y;
+        prevBoatPos = boatTransform.position;
+ 
         winConditionParent.gameObject.SetActive(false);
     }
 

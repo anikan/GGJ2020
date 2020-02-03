@@ -75,6 +75,12 @@ public class Player : MonoBehaviour
             newBlockIndicator.SetActive(false);
         }
 
+        Vector2Int playerGridIndex = manager.GetGridIndex(transform.position);
+        if (!manager.grid.ContainsKey(playerGridIndex))
+        {
+            transform.position = new Vector3(boat.transform.position.x, boat.transform.position.y, -0.257f);
+        }
+
         //Cap at max velocity.
         /*
         if (rigidbody.velocity.magnitude > maxSpeed)

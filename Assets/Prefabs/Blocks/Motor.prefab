@@ -4854,8 +4854,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopsPlayerMovement: 0
+  overkillHp: 0
   maxHP: 0
   hp: 0
+  destroyable: 1
   isSafeToAttachTo: 1
   mass: 1
   visited: 0
@@ -4866,6 +4868,7 @@ MonoBehaviour:
   maxVelocity: 10
   forwardForce: 0.2
   activelyBeingUsed: 0
+  allowControlFromWheel: 1
   motorModelTransform: {fileID: 5950148217264880663}
   maxMotorAngle: 45
   motorRotateSpeed: 60

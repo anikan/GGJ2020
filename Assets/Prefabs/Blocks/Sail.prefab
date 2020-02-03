@@ -173,10 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d0871df20ceb142af7e97e5b58a248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrabbable: 0
   stopsPlayerMovement: 0
+  overkillHp: 0
   maxHP: 0
   hp: 0
+  destroyable: 1
   isSafeToAttachTo: 1
   mass: 1
   visited: 0
@@ -187,6 +188,7 @@ MonoBehaviour:
   maxVelocity: 50
   forwardForce: 5
   activelyBeingUsed: 0
+  allowControlFromWheel: 1
   sailTransform: {fileID: 1650761391816478933}
   clothTransform: {fileID: 2018919407291450489}
   sailRotateSpeed: 30

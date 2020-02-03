@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8051fb43a1312429e5adde026e48e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrabbable: 0
+  stopsPlayerMovement: 0
+  overkillHp: 0
   maxHP: 0
   hp: 0
+  destroyable: 1
   isSafeToAttachTo: 1
   mass: 1
   visited: 0
@@ -55,9 +57,10 @@ MonoBehaviour:
   resourceUIIconOffset: {x: 0, y: 0, z: 0}
   wasRepaired: 0
   controllingRigidbody: {fileID: 0}
-  boatBodyTransform: {fileID: 0}
   maxVelocity: 50
   forwardForce: 0.1
+  activelyBeingUsed: 0
+  allowControlFromWheel: 1
   leftPaddle: {fileID: 6006534347465577464}
   rightPaddle: {fileID: 6006534348312017508}
   leftTip: {fileID: 6006534346785011627}

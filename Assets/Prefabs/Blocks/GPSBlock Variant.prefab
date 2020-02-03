@@ -673,8 +673,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopsPlayerMovement: 0
+  overkillHp: 0
   maxHP: 0
   hp: 0
+  destroyable: 1
   isSafeToAttachTo: 1
   mass: 1
   visited: 0
@@ -682,7 +684,6 @@ MonoBehaviour:
   resourceUIIconOffset: {x: 0, y: 0, z: 0}
   wasRepaired: 0
   kilometerText: {fileID: 917006955}
-  unityToFakeMeterScale: 0.02
   cameraIncrease: 5
 --- !u!1001 &425785261516579390
 PrefabInstance:
@@ -754,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
         type: 3}
       propertyPath: m_Name
-      value: GPSBlock
+      value: GPSBlock Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8860906097888058277, guid: 8916104075160574592d08e6dc80bc96, type: 3}

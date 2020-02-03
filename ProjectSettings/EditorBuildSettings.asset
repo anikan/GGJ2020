@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LegitScenes/GreatSea.unity
     guid: 01f0293c839504b48829452efd6f5f5b
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/SteeringBoatTestScene.unity
+    guid: d6933fe0e68d16141a1b061865a6f409
   m_configObjects: {}

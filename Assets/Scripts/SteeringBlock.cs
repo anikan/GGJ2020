@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class SteeringBlock : Block
 {
-    public static bool activelySteering = false;
+    public static SteeringBlock instance;
+    public bool activelySteering = false;
 
+    protected virtual void Awake()
+    {
+        if (instance)
+        {
+            GameObject.Destroy(instance);
+        }
+        instance = this;
+    }
 
     protected virtual void Start()
     {

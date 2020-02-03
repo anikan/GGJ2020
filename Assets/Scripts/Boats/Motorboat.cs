@@ -47,7 +47,7 @@ public class Motorboat : BoatPart
         base.Update();
         ParticleSystem.MainModule particleModule = motorParticleSystem.main;
 
-        if (!activelyBeingUsed && !SteeringBlock.activelySteering)
+        if (!activelyBeingUsed && !SteeringBlock.instance.activelySteering)
         {
             float newLifetime = particleModule.startLifetime.constant - particleRampSpeed * Time.deltaTime;
             particleModule.startLifetime = new ParticleSystem.MinMaxCurve(Mathf.Clamp(newLifetime, 0.0f, maxParticleLifetime));

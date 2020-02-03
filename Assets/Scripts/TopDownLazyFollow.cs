@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+using TMPro;
 
 public class TopDownLazyFollow : MonoBehaviour
 {
     public static TopDownLazyFollow gameCamera;
+
+    public float startingYValue = 0.0f;
     public Camera waterCamera;
 
     public Transform boatTransform;
@@ -12,6 +14,17 @@ public class TopDownLazyFollow : MonoBehaviour
     public float playerViewYOffset = -10.0f;
     public float steeringViewYOffset = -25.0f;
     public float waterCameraStartingDepth = -50.0f;
+    public float unityToFakeMeterScale = 0.01f;
+    public float winMeters = 10.0f;
+
+    public Transform winConditionParent;
+    public TextMeshProUGUI totalTimeMesh;
+    public TextMeshProUGUI totalDistanceMesh;
+
+    [HideInInspector]
+    public float totalDistanceTraveled, totalTimeElapsed = 0.0f;
+
+    private Vector3 prevBoatPos = Vector3.zero;
 
     public float smoothTime;
 
@@ -27,7 +40,28 @@ public class TopDownLazyFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        startingYValue = boatTransform.position.y;
+        prevBoatPos = boatTransform.position;
+    }
+
+    private void Update()
+    {
+        if (GetDistanceTraveled() > winMeters) {
+            OnWinCondition();
+        }
+
+        Vector3 boatPos = boatTransform.position;
+        float movementSinceLastFrame = Vector3.Distance(boatPos, prevBoatPos);
+        totalDistanceTraveled += (unityToFakeMeterScale * movementSinceLastFrame);
+        prevBoatPos = boatPos;
+
+        totalTimeElapsed += Time.deltaTime;
+        int mins = Mathf.FloorToInt(totalTimeElapsed / 60.0f);
+        float seconds = totalTimeElapsed % 60.0f;
+        string timeString = string.Format("{0}:{1}", mins.ToString(), seconds.ToString("F1"));
+        totalTimeMesh.text = "Total Time: " + timeString;
+        totalDistanceMesh.text = "Distance Traveled: " + totalDistanceTraveled.ToString("F1") + "km";
+
     }
 
     // Update is called once per frame
@@ -46,7 +80,19 @@ public class TopDownLazyFollow : MonoBehaviour
             Vector3 waterCameraPosDelta = new Vector3(posDelta.x, -posDelta.z, posDelta.y);
             waterCamera.transform.position += waterCameraPosDelta;
         }
+        else
+        {
+            Vector3 waterCameraPosDelta = new Vector3(0.0f, -posDelta.z, 0.0f);
+            waterCamera.transform.position += waterCameraPosDelta;
 
+        }
+
+
+    }
+
+    public float GetDistanceTraveled()
+    {
+        return unityToFakeMeterScale * (boatTransform.position.y - startingYValue);
     }
 
     public void ZoomToPlayerView()
@@ -57,5 +103,15 @@ public class TopDownLazyFollow : MonoBehaviour
     public void ZoomToBoatView()
     {
         isFollowingPlayer = false;
+    }
+
+    public void OnWinCondition()
+    {
+        winConditionParent.gameObject.SetActive(true);
+    }
+
+    public float GetDistanceLeft()
+    {
+        return 10.0f - GetDistanceTraveled(); 
     }
 }

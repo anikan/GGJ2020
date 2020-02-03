@@ -684,6 +684,7 @@ MonoBehaviour:
   resourceUIIconOffset: {x: 0, y: 0, z: 0}
   wasRepaired: 0
   kilometerText: {fileID: 917006955}
+  goalText: {fileID: 561844129}
   cameraIncrease: 5
 --- !u!1001 &425785261516579390
 PrefabInstance:
@@ -755,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
         type: 3}
       propertyPath: m_Name
-      value: GPSBlock Variant
+      value: GPSBlock
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8860906097888058277, guid: 8916104075160574592d08e6dc80bc96, type: 3}

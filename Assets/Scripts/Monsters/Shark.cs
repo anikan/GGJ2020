@@ -31,6 +31,11 @@ public class Shark : Damaging
         // Target velocity is something that's perpendicular to the circle
         Vector2 force = target.position - this.transform.position;
 
+        if(force.magnitude > 10.0f)
+        {
+            return;
+        }
+
         // Calculate the magnitude of the force according to the new radius we want
         float newRadius = Mathf.Max(force.magnitude, 0.01f);
         float forceMagnitude = (sharkSpeed * sharkSpeed) / newRadius;

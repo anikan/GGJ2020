@@ -47,6 +47,7 @@ public class TopDownLazyFollow : MonoBehaviour
             playerTransform = BlockPrefabs.instance.playerRef.transform;
             boatTransform = BlockPrefabs.instance.playerRef.boat.transform;
         }
+        winConditionParent.gameObject.SetActive(false);
     }
 
     private void Update()

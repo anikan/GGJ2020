@@ -6,6 +6,7 @@ public class SteeringBlock : Block
 {
     public static bool activelySteering = false;
 
+
     protected virtual void Start()
     {
         stopsPlayerMovement = true;

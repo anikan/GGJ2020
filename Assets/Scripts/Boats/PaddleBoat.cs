@@ -6,6 +6,8 @@ public class PaddleBoat : BoatPart
 {
     public Transform leftPaddle;
     public Transform rightPaddle;
+    public Block leftBlock;
+    public Block rightBlock;
     public Transform leftTip;
     public Transform rightTip;
 
@@ -19,7 +21,7 @@ public class PaddleBoat : BoatPart
 
     protected override void CheckInputsAndSteer()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && leftPaddle && leftBlock.hp > 0.0f)
         {
             float angle = paddleRotateSpeed * Time.deltaTime;
             RotatePaddleByDegrees(leftPaddle, angle);
@@ -34,7 +36,7 @@ public class PaddleBoat : BoatPart
             RotatePaddleByDegrees(leftPaddle, angle);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && rightPaddle && rightBlock.hp > 0.0f)
         {
             float angle = -paddleRotateSpeed * Time.deltaTime;
             RotatePaddleByDegrees(rightPaddle, angle);

@@ -44,6 +44,12 @@ public class BlockManager : MonoBehaviour
         return new Vector2Int(Mathf.RoundToInt(gridPosition.x), Mathf.RoundToInt(gridPosition.y));
     }
 
+    public Block GetBlockAtWorldPosition(Vector2 worldPosition)
+    {
+        Vector2Int gridPos = GetGridIndex(worldPosition);
+        return grid.ContainsKey(gridPos) ? grid[gridPos] : null;
+    }
+
     // Converts internal grid position to World Position
     public Vector2 GetWorldPosition(Vector2Int gridIndex)
     {

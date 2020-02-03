@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Block : Interactable
 {
-    public int maxHP;
-    public int hp;
+    public int overkillHp; // After this HP hits, the object gets destroyed; should be negative
+    public int maxHP; // After this HP hits, the object gets disconnected from the ship and becomes a resource
+    public int hp; // current HP
 
     public bool isSafeToAttachTo = true;
     public float mass = 1;
@@ -39,10 +40,22 @@ public class Block : Interactable
     {
         hp -= damage;
 
-        if (hp < 0)
+        if (hp <= 0)
         {
-            //Break?
+            // Remove it from the grid system
+            var manager = this.GetComponentInParent<BlockManager>();
+            var block = manager.RemoveBlock(this.transform.position);
+
+            // Spawn the resource
+            // TO DO
+
+            if (hp <= overkillHp)
+            {
+                // Destroy the block
+                Destroy(this);
+            }
         }
+
 
         resourceUIIcon = GameObject.Instantiate<GameObject>(BlockPrefabs.instance.needResourceIconPrefab);
         resourceUIIcon.transform.parent = this.transform;
@@ -59,16 +72,6 @@ public class Block : Interactable
         if (resourceUIIcon)
         {
             Destroy(resourceUIIcon);
-        }
-    }
-
-    public void OnTriggerEnter2D(Collider2D collider)
-    {
-        Debug.Log(collider.gameObject.name);
-        Damaging damageable = collider.gameObject.GetComponent<Damaging>();
-        if (damageable)
-        {
-            OnHit(damageable.strength);
         }
     }
 }

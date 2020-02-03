@@ -4855,8 +4855,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopsPlayerMovement: 0
   overkillHp: 0
-  maxHP: 0
-  hp: 0
+  maxHP: 5
+  hp: 5
   destroyable: 1
   isSafeToAttachTo: 1
   mass: 1

@@ -28,7 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -0.98}
   m_LocalScale: {x: 0.08007617, y: 0.08007617, z: 1.0520004}
   m_Children: []
-  m_Father: {fileID: 7674459393958898102}
+  m_Father: {fileID: 1187097685813998248}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1205011310
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7674459393958898103}
+  m_GameObject: {fileID: 1187097685813998232}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f8ddc63c14973b44a2455e0594c334a, type: 3}
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopsPlayerMovement: 0
   overkillHp: 0
-  maxHP: 0
-  hp: 0
+  maxHP: 1000000
+  hp: 1000000
   destroyable: 0
   isSafeToAttachTo: 1
   mass: 1
@@ -104,6 +104,7 @@ MonoBehaviour:
   matType: 0
   resourceUIIconOffset: {x: 0, y: 0, z: 0}
   wasRepaired: 0
+  activelySteering: 0
 --- !u!1001 &1187097685813998100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,18 +175,18 @@ PrefabInstance:
     - target: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
         type: 3}
       propertyPath: m_Name
-      value: SteeringBlock
+      value: SteeringBlock Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8860906097888058277, guid: 8916104075160574592d08e6dc80bc96, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8916104075160574592d08e6dc80bc96, type: 3}
---- !u!1 &7674459393958898103 stripped
+--- !u!1 &1187097685813998232 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
     type: 3}
   m_PrefabInstance: {fileID: 1187097685813998100}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7674459393958898102 stripped
+--- !u!4 &1187097685813998248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8860906097888058274, guid: 8916104075160574592d08e6dc80bc96,
     type: 3}
@@ -196,7 +197,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7674459393958898102}
+    m_TransformParent: {fileID: 1187097685813998248}
     m_Modifications:
     - target: {fileID: 6006534346738589813, guid: 7e98d37c136cf8c4e848fc8aac764be6,
         type: 3}

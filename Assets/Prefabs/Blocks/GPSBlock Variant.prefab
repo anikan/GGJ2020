@@ -186,7 +186,7 @@ Transform:
   m_LocalScale: {x: 0.91699684, y: 0.91699684, z: 1.4413031}
   m_Children:
   - {fileID: 751232819}
-  m_Father: {fileID: 9156084495235889564}
+  m_Father: {fileID: 425785261516579458}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &675066984
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9156084495235889565}
+  m_GameObject: {fileID: 425785261516579506}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 562b3fe231c1391498c6af700a8b55eb, type: 3}
@@ -674,8 +674,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopsPlayerMovement: 0
   overkillHp: 0
-  maxHP: 0
-  hp: 0
+  maxHP: 5
+  hp: 5
   destroyable: 1
   isSafeToAttachTo: 1
   mass: 1
@@ -756,18 +756,18 @@ PrefabInstance:
     - target: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
         type: 3}
       propertyPath: m_Name
-      value: GPSBlock
+      value: GPSBlock Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8860906097888058277, guid: 8916104075160574592d08e6dc80bc96, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8916104075160574592d08e6dc80bc96, type: 3}
---- !u!1 &9156084495235889565 stripped
+--- !u!1 &425785261516579506 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8860906097888058275, guid: 8916104075160574592d08e6dc80bc96,
     type: 3}
   m_PrefabInstance: {fileID: 425785261516579390}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &9156084495235889564 stripped
+--- !u!4 &425785261516579458 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8860906097888058274, guid: 8916104075160574592d08e6dc80bc96,
     type: 3}

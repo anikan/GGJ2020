@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopsPlayerMovement: 0
   overkillHp: 0
-  maxHP: 0
-  hp: 0
+  maxHP: 5
+  hp: 5
   destroyable: 1
   isSafeToAttachTo: 1
   mass: 1
@@ -63,6 +63,8 @@ MonoBehaviour:
   allowControlFromWheel: 1
   leftPaddle: {fileID: 6006534347465577464}
   rightPaddle: {fileID: 6006534348312017508}
+  leftBlock: {fileID: 0}
+  rightBlock: {fileID: 0}
   leftTip: {fileID: 6006534346785011627}
   rightTip: {fileID: 6006534348000005527}
   paddleRotateSpeed: 350
